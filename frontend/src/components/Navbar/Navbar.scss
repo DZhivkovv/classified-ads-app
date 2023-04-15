@@ -1,0 +1,51 @@
+nav{
+    width: 100%;
+    height: 10%;
+
+    .nav--container{
+        display: flex;
+        align-items: center;
+        margin: 0 50px;
+
+        a{
+            text-decoration: none;
+            color: gray;
+            &:hover{
+                color: black;
+            }
+        }
+
+        .logo{
+            width: 65px;
+            height: 65px;
+            margin-right: 20px;
+        }
+
+        .nav--element{
+            margin: 0 10px;
+            list-style: none;
+        }
+
+        .login{
+            margin-left: auto;
+        }
+
+        .signup{
+            background-color: rgb(176, 19, 176);
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 2px;
+            padding: 10px;
+         
+            &:hover{
+                background-color: rgb(218, 37, 218);
+            }
+
+            a{
+                color: white;
+            }
+        }
+
+    }
+}
+
