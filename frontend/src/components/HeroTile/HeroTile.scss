@@ -1,0 +1,10 @@
+.tile--container{
+    border-radius: 10px;
+    transition: .5s;
+    margin: 0 auto;
+    outline: 1px solid black;
+
+    &:hover{
+        transform: scale(1.05);
+    }
+}
