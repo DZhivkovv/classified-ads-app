@@ -36,28 +36,43 @@
     
         .input-group{
             height: 280px;
-        }
+
+            .input-field{
+                margin: 15px 0;
+                display: flex;
+                align-items: center;
+                border-radius: 3px;
+                background: #eaeaea;
     
-        .input-field{
-            margin: 15px 0;
-            display: flex;
-            align-items: center;
-            border-radius: 3px;
-            background: #eaeaea;
+                .validation-msg{
+                    font-size: 10px;
+                    font-style: italic;
+                    color: #656565;
+                }
     
-            input{
-                width: 100%;
-                padding: 18px 15px;
-                border: 0;
-                outline: 0;
-                background: transparent;
-            }
+                input{
+                    width: 100%;
+                    margin-left: 10px;
+                    padding: 18px 20px;
+                    border: 0;
+                    outline: 0;
+                    background: transparent;
     
-            i{
-                margin-left: 15px;
-                color: #999;
-            }
+                    &:focus{
+                        border: 2px dotted blue;
     
+                        &:invalid{
+                            border: 2px dotted red;
+        
+                        }
+                    }
+                }
+        
+                i{
+                    margin-left: 10px;
+                    color: #999;
+                }    
+            }    
         }
 
         button{
