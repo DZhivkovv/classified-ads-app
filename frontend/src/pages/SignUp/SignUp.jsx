@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom'
 import './SignUp.scss'
 
 export default function SignUp(){
+    const [user, setUser] = React.useState({
+        "email":"",
+        "username":"",
+        "password":"",
+    })
+
     return(
         <div className="signUp--container">
             <div className="form-box">
