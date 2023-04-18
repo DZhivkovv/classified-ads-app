@@ -19,6 +19,20 @@ export default function SignUp(){
         })
     }
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    
+        const response = await fetch('http://localhost:3001/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: user.email,
+            username: user.username,
+            password: user.password,
+            })
+        });
+    };
+
     return(
         <div className="signUp--container">
             <div className="form-box">
