@@ -9,6 +9,16 @@ export default function SignUp(){
         "password":"",
     })
 
+    function handleChange(e){
+        const {name, value} = e.target;
+        setUser(prevUser => {
+            return{
+                ...prevUser,
+                [name]: value
+            }
+        })
+    }
+
     return(
         <div className="signUp--container">
             <div className="form-box">
