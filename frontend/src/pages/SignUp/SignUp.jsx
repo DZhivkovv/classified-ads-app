@@ -23,7 +23,6 @@ export default function SignUp(){
                             <i class="fa-solid fa-lock"></i>
                             <input type="password" name="password" placeholder="Password"></input>
                         </div>
-                        <a href="#">Forgotten password?</a>
                     </div>
                     <button>Sign up</button>
                 </form>
