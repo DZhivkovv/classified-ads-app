@@ -51,8 +51,8 @@ export default function SignUp(){
 
                         <div className="input-field">
                             <i className="fa-solid fa-lock"></i>
-                            <input type="password" name="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" onChange={handleChange} required></input>
-                            <p className="validation-msg">Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.</p>
+                            <input type="password" name="password" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&]).{8,}$" onChange={handleChange} required></input>
+                            <p className="validation-msg">The password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from the set @$!%*?& and be at least 8 characters long.</p>
                         </div>
                     </div>
                     <button>Sign up</button>
