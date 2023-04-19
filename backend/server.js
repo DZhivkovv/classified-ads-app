@@ -26,8 +26,9 @@ if(!port){
     process.exit(1);
 }
 
-app.get('/', (request, response) => {
-    response.send('Connected');
+const db_url = process.env.DB_URL;
+dbConnect(db_url);
+
 })
 
 try{
