@@ -41,7 +41,7 @@ export default function SignUp(){
                     <div className="input-group">
                         <div className="input-field">
                             <i className="fa-solid fa-envelope"></i>
-                            <input type="email" name="email" placeholder="Email" onChange={handleChange} required></input>
+                            <input type="email" name="email" placeholder="Email" onChange={handleChange} pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required></input>
                         </div>
 
                         <div className="input-field">
