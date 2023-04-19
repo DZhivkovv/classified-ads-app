@@ -1,8 +1,11 @@
 import express from 'express'
 import session from 'express-session'
+import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import { dbConnect } from './core/db.js';
+import User from './models/userModel.js'
 dotenv.config();
 
 const app = express();
@@ -20,9 +23,8 @@ app.use(session({
 }))
 
 const port = process.env.PORT;
-
 if(!port){
-    console.log("port is not defined!");
+    console.log("Port is not defined in .env!");
     process.exit(1);
 }
 
@@ -63,6 +65,25 @@ app.post('/signup', (request,response) => {
     });
 });
 
+
+app.post('/login', async (request, response) => {
+    const {email, password} = request.body;
+
+    if(!email || !password){
+        console.log('Email or password missing')
+    }
+    const user = await User.findOne({email: email}) //Finding the user in db
+
+    if(!user){
+        console.log('User not found');
+    }
+
+    const matchPassword = await bcrypt.compare(password, user.password)
+    if(matchPassword){
+        const userSession = {email: user.email}; //creating user session
+        request.session.user = userSession;
+        console.log('Log in successful');
+    }
 })
 
 try{
