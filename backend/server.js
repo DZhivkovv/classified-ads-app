@@ -1,8 +1,24 @@
 import express from 'express'
+import session from 'express-session'
+import crypto from 'crypto'
 import dotenv from 'dotenv'
+import cors from 'cors'
 dotenv.config();
 
 const app = express();
+app.use(cors({
+    allowedHeaders: '*'
+}))
+app.use(express.json());
+
+const secretKey = crypto.randomBytes(32).toString('hex');
+app.use(session({
+    secret:secretKey,
+    resave: false,
+    saveUninitialized: false,
+
+}))
+
 const port = process.env.PORT;
 
 if(!port){
