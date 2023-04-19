@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import './Login.scss';
 
 export default function Login(){
+    const [user, setUser] = React.useState({
+        email:"",
+        password:""
+    })
+
     return(
         <div className="login--container">
             <div className="form-box">
