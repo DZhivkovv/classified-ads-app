@@ -43,21 +43,18 @@ app.post('/signup', (request,response) => {
         });
         user.save()
         .then((result) => {
-            console.log("User created successfully!")
             response.status(201).send({
                 message:"User created successfully!",
                 result,
             });
         })
         .catch((error)=>{
-            console.log("Error creating user")
             response.status(500).send({
                 message: "Error creating user",
                 error
             });
         });
     }).catch((error) => {
-        console.log('Password was not hashed successfully')
         response.status(500).send({
             message:"Password was not hashed successfully",
             error,
@@ -70,19 +67,27 @@ app.post('/login', async (request, response) => {
     const {email, password} = request.body;
 
     if(!email || !password){
-        console.log('Email or password missing')
+        response.status(500).send({
+            message:"Email or password is missing!",
+            error
+        })
     }
     const user = await User.findOne({email: email}) //Finding the user in db
 
     if(!user){
-        console.log('User not found');
+        response.status(500).send({
+            message:"User not found!",
+            error
+        })
     }
 
     const matchPassword = await bcrypt.compare(password, user.password)
     if(matchPassword){
         const userSession = {email: user.email}; //creating user session
         request.session.user = userSession;
-        console.log('Log in successful');
+        response.status(200).send({
+            message:"Successful login!"
+        })
     }
 })
 
