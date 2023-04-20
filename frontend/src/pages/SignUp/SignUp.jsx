@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './SignUp.scss'
 
 export default function SignUp(){
@@ -8,6 +8,8 @@ export default function SignUp(){
         username:"",
         password:"",
     })
+
+    const navigate = useNavigate();
 
     function handleChange(e){
         const {name, value} = e.target;
@@ -22,7 +24,7 @@ export default function SignUp(){
     const handleSubmit = async (event) => {
         event.preventDefault();
     
-        const response = await fetch('http://localhost:3001/signup', {
+        await fetch('http://localhost:3001/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -30,7 +32,10 @@ export default function SignUp(){
             username: user.username,
             password: user.password,
             })
-        });
+        }).then( response => {
+            if(response.status === 201){
+                navigate('/login', { state: { successfulSignup: true } });            }
+        })
     };
 
     return(
@@ -58,7 +63,6 @@ export default function SignUp(){
                     <button>Sign up</button>
                 </form>
                 <p>Already have an account? <Link to='/login'>Log in</Link></p>
-
             </div>
         </div>
     )
