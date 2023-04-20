@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Login.scss';
 
 export default function Login(){
@@ -7,6 +7,9 @@ export default function Login(){
         email:"",
         password:""
     })
+
+    const location = useLocation();
+    const successfulSignup = location.state?.successfulSignup
 
     function handleChange(e){
         const {name, value} = e.target;
@@ -34,6 +37,9 @@ export default function Login(){
     return(
         <div className="login--container">
             <div className="form-box">
+                <div className={successfulSignup ? "signup--success":"hidden"}>
+                    <p>Successful signup! Please, login.</p>
+                </div>
                 <h1>Sign in</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
