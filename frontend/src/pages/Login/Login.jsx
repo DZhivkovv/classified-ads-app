@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Login.scss';
 
 export default function Login(){
@@ -7,7 +7,7 @@ export default function Login(){
         email:"",
         password:""
     })
-
+    const navigate  = useNavigate();
     const location = useLocation();
     const successfulSignup = location.state?.successfulSignup
 
@@ -24,14 +24,21 @@ export default function Login(){
     async function handleSubmit(e){
         e.preventDefault();
     
-        const response = await fetch('http://localhost:3001/login', {
+        await fetch('http://localhost:3001/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email: user.email,
             password: user.password,
             })
-        });
+        })
+        .then( response => {
+            if(response.status === 200){
+                navigate('/', { state: { successfulLogin: true } });
+            }
+        }).catch(error => {
+            console.error(error);
+        })
     }
 
     return(
