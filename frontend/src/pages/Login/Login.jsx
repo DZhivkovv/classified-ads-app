@@ -44,12 +44,12 @@ export default function Login(){
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <div className="input-field">
-                            <i class="fa-solid fa-user"></i>
+                            <i className="fa-solid fa-user"></i>
                             <input type="email" name="email" placeholder="Email" onChange={handleChange}></input>
                         </div>
 
                         <div className="input-field">
-                            <i class="fa-solid fa-lock"></i>
+                            <i className="fa-solid fa-lock"></i>
                             <input type="password" name="password" onChange={handleChange}></input>
                         </div>
                     </div>
