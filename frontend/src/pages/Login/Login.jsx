@@ -34,7 +34,9 @@ export default function Login(){
         })
         .then( response => {
             if(response.status === 200){
-                navigate('/', { state: { successfulLogin: true } });
+                response.json().then(content => {
+                navigate('/', { state: { successfulLogin: true, userInfo: content.user} });
+                })
             }
         }).catch(error => {
             console.error(error);
