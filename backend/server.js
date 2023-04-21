@@ -83,10 +83,11 @@ app.post('/login', async (request, response) => {
 
     const matchPassword = await bcrypt.compare(password, user.password)
     if(matchPassword){
-        const userSession = {email: user.email}; //creating user session
+        const userSession = {email: user.email, username: user.username}; //creating user session
         request.session.user = userSession;
         response.status(200).send({
-            message:"Successful login!"
+            message:"Successful login!",
+            user: userSession
         })
     }
 })
