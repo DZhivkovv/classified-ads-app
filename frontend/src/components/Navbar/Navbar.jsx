@@ -12,6 +12,7 @@ export default function Navbar(props){
         elementRef.current.classList.toggle('hidden');
     }
 
+    //Convert a string array passed as props in the Navbar component into links for the navigation bar
     const allLinks = props.links.map(
         link => 
         <li key={link} className = {"nav--element " + link.replace(/\s/g, '').toLowerCase()}>
@@ -24,11 +25,17 @@ export default function Navbar(props){
     return(
         <nav>
             <ul className="nav--container">
+                {/* Left side of the navbar */}
+                {/* A logo that redirects to homepage */}
+                <Link to='/'>                
+                    <img src={logo} alt="A temporary logo until i make one" className="nav--element logo"/>
+                </Link>
 
-            <Link to='/'>                
-                <img src={logo} alt="A temporary logo until i make one" className="nav--elelment logo"/>
-            </Link>
+                {/* Links created from the prop 'links' */}
                 {allLinks}
+
+
+                {/* Right side of the navbar */}
                 {/* This part of the navigation will only be visible if the user is not logged into their account. */}                               
                 <li className={props.successfulLogin? "hidden" : "nav--element login"}>
                     <Link to='/login'>
