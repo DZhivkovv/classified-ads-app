@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import './Navbar.scss'
 import logo from '../../assets/—Pngtree—corporate image logo free logo_1026060.png'
+import userPhoto from '../../assets/Navbar/user.png'
 
 export default function Navbar(props){
     //Create reference to the profile menu in navigation that will show and hide everytime the profile image is clicked 
