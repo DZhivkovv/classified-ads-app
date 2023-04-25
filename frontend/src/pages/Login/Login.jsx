@@ -8,6 +8,20 @@ export default function Login(){
         password:""
     })
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        fetch('http://localhost:3001/api/isUserAuth',{
+            headers: {
+                'x-access-token':localStorage.getItem('token')
+            }
+        })
+        .then(response => response.json())
+        .then(data => data.isLoggedIn === true ? navigate('/'): null)
+    },[])
+
     function handleChange(e){
         const {name, value} = e.target;
         setUser(prevUser => {
