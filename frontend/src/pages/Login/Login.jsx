@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 export default function Login(){
-    const [user, setUser] = React.useState({
+    const [user, setUser] = useState({
         email:"",
         password:""
     })
