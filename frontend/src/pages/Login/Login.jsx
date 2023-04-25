@@ -28,7 +28,14 @@ export default function Login(){
             email: user.email,
             password: user.password,
             })
-        });
+          })
+          .then(response => response.json())
+          .then(data => {
+            localStorage.setItem('token', data.token)
+            if(data.status === 200){
+                navigate('/')
+            }
+        })
     }
 
     return(
