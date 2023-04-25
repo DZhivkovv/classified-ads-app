@@ -42,6 +42,20 @@ export default function Navbar(props){
                 <img src={logo} alt="A temporary logo until i make one" className="nav--elelment logo"/>
             </Link>
                 {allLinks}
+                {isLoggedIn === true ? 
+                <div className="nav--right">
+                    <div className="logout" onClick={handleLogout}>Logout</div>
+                </div>
+                :
+                <div className="nav--right">
+                    <li className="login">
+                        <Link to='/login'>Login</Link>
+                    </li>
+                    <li className="register">
+                        <Link to='/register'>Register</Link>
+                    </li>
+                </div>
+                }
             </ul>
         </nav>
     )
