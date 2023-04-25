@@ -3,12 +3,14 @@ import dotenv from 'dotenv'
 dotenv.config();
 import cors from 'cors'
 import bodyParser from 'body-parser';
+import { dbConnect } from './core/db.js';
 
 
 const app = express();
 app.use(express.json())
 app.use(bodyParser.json());
 app.use(cors());
+dbConnect(process.env.DB_URL);
 
 const port = process.env.PORT;
 
