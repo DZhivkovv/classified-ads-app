@@ -34,13 +34,13 @@ export default function Login(){
 
     async function handleSubmit(e){
         e.preventDefault();
-    
+
         await fetch('http://localhost:3001/api/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: user.email,
-            password: user.password,
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: user.email,
+              password: user.password,
             })
           })
           .then(response => response.json())
@@ -59,12 +59,12 @@ export default function Login(){
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <div className="input-field">
-                            <i class="fa-solid fa-user"></i>
+                            <i className="fa-solid fa-user"></i>
                             <input type="email" name="email" placeholder="Email" onChange={handleChange}></input>
                         </div>
 
                         <div className="input-field">
-                            <i class="fa-solid fa-lock"></i>
+                            <i className="fa-solid fa-lock"></i>
                             <input type="password" name="password" onChange={handleChange}></input>
                         </div>
                     </div>
