@@ -62,14 +62,14 @@ export const login = async (request, response) => {
 
                 return response.json({
                     status:200,
+                    isLoggedIn: true,
                     message: "Success",
-                    token: "Bearer " + token
+                    token:token
                 })
             } catch (error) {
                 return response.status(400).json({message: error})
             }
         } else {
-          console.log("Invalid username or password");
             return response.status(400).json({
               status: 400,
               message:"Invalid username or password"
@@ -96,7 +96,6 @@ export const isUserAuth = async (request, response) => {
         status:200,
         username: username,
         isLoggedIn: true,
-        message:"Good token",
       })
   
     }
