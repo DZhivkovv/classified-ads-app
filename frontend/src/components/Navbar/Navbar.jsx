@@ -29,6 +29,11 @@ export default function Navbar(props){
         })
     },[])
 
+    function handleLogout(){
+        localStorage.removeItem('token');
+        navigate('/login');
+    }
+    
     return(
         <nav>
             <ul className="nav--container">
