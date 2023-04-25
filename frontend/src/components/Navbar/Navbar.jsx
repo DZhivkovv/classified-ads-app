@@ -15,6 +15,20 @@ export default function Navbar(props){
         </li>   
     )
 
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        fetch('http://localhost:3001/api/isUserAuth',{
+            headers: {
+                'x-access-token':localStorage.getItem('token')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            setIsLoggedIn(data.isLoggedIn)
+        })
+    },[])
+
     return(
         <nav>
             <ul className="nav--container">
