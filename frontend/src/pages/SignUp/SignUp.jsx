@@ -9,6 +9,19 @@ export default function SignUp(){
         password:"",
     })
 
+    const navigate = useNavigate()
+
+
+    useEffect(() => {
+        fetch('http://localhost:3001/api/isUserAuth',{
+            headers: {
+                'x-access-token':localStorage.getItem('token')
+            }
+        })
+        .then(response => response.json())
+        .then(data => data.isLoggedIn ? navigate('/') : null)
+    },[])
+
     function handleChange(e){
         const {name, value} = e.target;
         setUser(prevUser => {
