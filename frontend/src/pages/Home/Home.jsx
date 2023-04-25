@@ -7,7 +7,7 @@ export default function Home(){
     return(
         <div className="home--container">
             <Navbar
-                links={['Ads', 'Contact us', 'Log In', 'Sign Up']}
+                links={['Ads', 'Contact us']}
             />
 
             <div className="home--hero-section">
