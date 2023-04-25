@@ -1,9 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import './Navbar.scss'
 import logo from '../../assets/—Pngtree—corporate image logo free logo_1026060.png'
 
 export default function Navbar(props){
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     const allLinks = props.links.map(
         link => 
         <li key={link} className = {"nav--element " + link.replace(/\s/g, '').toLowerCase()}>
