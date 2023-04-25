@@ -31,6 +31,10 @@ export default function SignUp(){
             password: user.password,
             })
         });
+        const data = await response
+        if(data.status === 200){
+            navigate('/login')
+        }
     };
 
     return(
