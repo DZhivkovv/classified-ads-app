@@ -8,92 +8,61 @@ nav{
         display: flex;
         align-items: center;
 
-        .hidden{
-            display: none;
-        }
-        
-        a{
-            text-decoration: none;
-            color: gray;
-            &:hover{
-                color: black;
-            }
-        }
 
-        .logo{
-            width: 65px;
-            margin-right: 20px;
-        }
-
-        .nav--element{
-        /* Applies to every element in navbar */
-            margin: 0 10px;
+        .nav--left{
+            display: flex;
+            align-items: center;
             list-style: none;
-        }
-
-        /* Elements for users that are not logged in */
-        .login{
-            margin-left: auto;
-        }
-
-        .signup{
-            margin-top: 2px;
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            background-color: rgb(176, 19, 176);
-         
-            &:hover{
-                background-color: rgb(218, 37, 218);
-            }
 
             a{
-                color: white;
+                margin: 0 10px;
+            }
+
+            .logo{
+                width: 65px;
+                margin-right: 20px;
             }
         }
 
-        /*Elements that only logged in users can see*/
-        .loggedUser{
+        .nav--right{
             margin-left: auto;
-            position: relative;
+            display: flex;
+            align-items: center;
+            list-style: none;
 
-            .loggedUser--details{
-                /*Username text and profile photo*/
-                display: flex;
-                align-items: center;
 
-                .loggedUser--username{
-                    margin-right: 10px;
+            .login{
+                margin-left: auto;
+                margin-right: 20px;
+            }
+
+            .register{
+                margin-top: 2px;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+                background-color: rgb(176, 19, 176);
+            
+                &:hover{
+                    background-color: rgb(218, 37, 218);
                 }
 
-                .loggedUser--profile{
-                    width: 56px;
-                    margin: 0 auto;
+                a{
+                    color: white;
+                }
+            }
+
+
+                .logout{
                     cursor: pointer;
                 }
-                
-                /*Menu that shows and hides when the profile image is clicked*/
-                .loggedUser--menu{
-                    width: 150px;
-                    position: absolute;
-                    top: 60px;
-                    right: 0px;
-                    text-align: right;
-                    border-radius: 10px;
-                    outline: 1px solid rgb(178, 178, 178);
-                    background-color: white;
+        }
 
-                    .menu-item{
-                        margin: 5px 0px;
-                        display: flex;
-                        justify-content: flex-end;
-                        align-items: center;
-    
-                        a{
-                            margin-left: 10px;
-                        }
-                    }
-                }
+        a, .logout{
+            text-decoration: none;
+            color: gray;
+            &:hover{                
+                color: black;
             }
         }
     }
