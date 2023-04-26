@@ -1,15 +1,26 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import './SignUp.scss'
 
 export default function SignUp(){
-    const [user, setUser] = React.useState({
+    const [user, setUser] = useState({
         email:"",
         username:"",
         password:"",
     })
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+
+
+    useEffect(() => {
+        fetch('http://localhost:3001/api/isUserAuth',{
+            headers: {
+                'x-access-token':localStorage.getItem('token')
+            }
+        })
+        .then(response => response.json())
+        .then(data => data.isLoggedIn ? navigate('/') : null)
+    },[])
 
     function handleChange(e){
         const {name, value} = e.target;
@@ -24,7 +35,7 @@ export default function SignUp(){
     const handleSubmit = async (event) => {
         event.preventDefault();
     
-        await fetch('http://localhost:3001/signup', {
+        const response = await fetch('http://localhost:3001/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -32,10 +43,11 @@ export default function SignUp(){
             username: user.username,
             password: user.password,
             })
-        }).then( response => {
-            if(response.status === 201){
-                navigate('/login', { state: { successfulSignup: true } });            }
-        })
+        });
+        const data = await response
+        if(data.status === 200){
+            navigate('/login')
+        }
     };
 
     return(

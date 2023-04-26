@@ -1,20 +1,26 @@
-import React from "react";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import React, {useState, useEffect} from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 // Component to handle user login
 export default function Login(){
-    // Set initial user state
-    const [user, setUser] = React.useState({
+    const [user, setUser] = useState({
         email:"",
         password:""
     })
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate  = useNavigate();
-    const location = useLocation();
-    // Check if signup was successful and set to state
-    const successfulSignup = location.state?.successfulSignup
 
-    // Handle changes to user input
+    useEffect(() => {
+        fetch('http://localhost:3001/api/isUserAuth',{
+            headers: {
+                'x-access-token':localStorage.getItem('token')
+            }
+        })
+        .then(response => response.json())
+        .then(data => data.isLoggedIn === true ? navigate('/'): null)
+    },[])
+
     function handleChange(e){
         const {name, value} = e.target;
         setUser(prevUser => {
@@ -29,24 +35,20 @@ export default function Login(){
     async function handleSubmit(e){
         e.preventDefault();
 
-        // Send user credentials to server for login
-        await fetch('http://localhost:3001/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: user.email,
-            password: user.password,
+        await fetch('http://localhost:3001/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: user.email,
+              password: user.password,
             })
-        })
-        .then( response => {
-            // If login successful, navigate to home page and set state
-            if(response.status === 200){
-                response.json().then(content => {
-                navigate('/', { state: { successfulLogin: true, userInfo: content.user} });
-                })
+          })
+          .then(response => response.json())
+          .then(data => {
+            localStorage.setItem('token', data.token)
+            if(data.status === 200){
+                navigate('/')
             }
-        }).catch(error => {
-            console.error(error);
         })
     }
 
@@ -54,15 +56,10 @@ export default function Login(){
     return(
         <div className="login--container">
             <div className="form-box">
-                {/* Show success message if signup was successful */}
-                <div className={successfulSignup ? "signup--success":"hidden"}>
-                    <p>Successful signup! Please, login.</p>
-                </div>
                 <h1>Sign in</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <div className="input-field">
-                            <i className="fa-solid fa-envelope"></i>
                             <input type="email" name="email" placeholder="Email" onChange={handleChange}></input>
                         </div>
 
