@@ -47,9 +47,15 @@ export default function AddClassifiedAd(){
             }
         })
         .then(response => response.json())
-        .then(data => data.isLoggedIn === false ? navigate('/login') : null);
+        .then(data => {
+            setUserInfo({
+                userID: data.userID,
+                username: data.username,
+            });
+            return data.isLoggedIn === false ? navigate('/login') : null
+        });
     },[])
-    
+
       return(
         <div className="addAd--container">
             <form action="/advertisements" method="POST" onSubmit={handleSubmit}>
