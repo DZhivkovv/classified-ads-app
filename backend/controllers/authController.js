@@ -91,10 +91,11 @@ export const isUserAuth = async (request, response) => {
     } else{
       const decodedToken = jwt.verify(tokenValue, process.env.JWT_SECRET)
       const username = decodedToken.username
-
+      const userID = decodedToken.id  
       response.send({
         status:200,
-        username: username,
+        username,
+        userID,
         isLoggedIn: true,
       })
   
