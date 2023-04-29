@@ -11,6 +11,34 @@ export default function AddClassifiedAd(){
         price: '',
       });
 
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setAdData({
+            ...adData,
+            [name]:value
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const { title, description, price } = adData;
+        const requestBody = {
+          title,
+          description,
+          price,
+          username: userInfo.username,
+          userID: userInfo.userID,
+        };
+
+        fetch('http://localhost:3001/advertisements', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestBody)
+        })    
+    }
+
     const navigate = useNavigate();
     useEffect(()=>{
         fetch('http://localhost:3001/api/isUserAuth',{
