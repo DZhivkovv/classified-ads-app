@@ -3,6 +3,14 @@ import { useNavigate } from "react-router-dom";
 import './AddAd.scss'
 
 export default function AddClassifiedAd(){
+    const [userInfo, setUserInfo] = useState(null)
+
+    const [adData, setAdData] = useState({
+        title: '',
+        description: '',
+        price: '',
+      });
+
     const navigate = useNavigate();
     useEffect(()=>{
         fetch('http://localhost:3001/api/isUserAuth',{
