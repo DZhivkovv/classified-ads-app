@@ -16,7 +16,38 @@ export default function AddClassifiedAd(){
     
       return(
         <div className="addAd--container">
-            <p>Add an ad</p>
+            <form action="/advertisements" method="POST" onSubmit={handleSubmit}>
+            <div>
+                <label for="title">Title:</label>
+                <input 
+                    type="text" 
+                    id="title" 
+                    name="title" 
+                    onChange={handleChange} 
+                    required
+                    />
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea 
+                id="description" 
+                name="description" 
+                onChange={handleChange} 
+                required
+                />
+            </div>
+            <div>
+                <label for="price">Price:</label>
+                <input 
+                type="number" 
+                id="price" 
+                name="price" 
+                onChange={handleChange} 
+                required
+                />
+            </div>
+            <button>Add advertisement</button>
+            </form>
         </div>
     )
 }
