@@ -5,12 +5,14 @@ import cors from 'cors'
 import bodyParser from 'body-parser';
 import { dbConnect } from './core/db.js';
 import router from './routes/authRoutes.js';
+import adRouter from './routes/adRoutes.js'
 
 const app = express();
 app.use(express.json())
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/api', router)
+app.use('/', adRouter)
 
 const port = process.env.PORT;
 if(!port){
