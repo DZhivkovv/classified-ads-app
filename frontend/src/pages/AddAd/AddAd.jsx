@@ -63,7 +63,7 @@ export default function AddClassifiedAd(){
 
       return(
         <div className="addAd--container">
-            <form action="/advertisements" method="POST" onSubmit={handleSubmit}>
+            <form action="/advertisements" method="POST" onSubmit={handleSubmit} encType="multipart/form-data">
             <div>
                 <label for="title">Title:</label>
                 <input 
@@ -91,6 +91,14 @@ export default function AddClassifiedAd(){
                 name="price" 
                 onChange={handleChange} 
                 required
+                />
+            </div>
+            <div>
+                <input
+                type="file"
+                accept=".png, .jpg, .jpeg"
+                name="images"
+                onChange={handleImage}
                 />
             </div>
             <button>Add advertisement</button>
