@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import Ad from "../../components/Ad/Ad";
 import './Ads.scss'
 
 export default function Ads(){
@@ -20,7 +21,12 @@ export default function Ads(){
                 links={['Home', 'Contact us']}
             />
             <section className="ads--main-section">
-                <h1>Ads</h1>       
+                {
+                    ads?
+                    ads.map(ad => <Ad key = {ad._id} title = {ad.title} description = {ad.description} price = {ad.price} username = {ad.username} date={ad.date} images = {ad.images}/>)
+                    :
+                    null
+                }                
                 <Link to='/addad' className="add-an-ad-btn">+</Link>
             </section>
         </div>
