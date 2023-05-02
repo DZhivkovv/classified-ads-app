@@ -9,6 +9,7 @@ export default function AddClassifiedAd(){
         title: '',
         description: '',
         price: '',
+        images:'',
       });
 
     const handleChange = (e) => {
@@ -16,8 +17,12 @@ export default function AddClassifiedAd(){
         setAdData({
             ...adData,
             [name]:value
-        });
-    };
+    const handleImage = (e) => {
+        setAdData({
+            ...adData,
+            images: e.target.files[0]
+        }) 
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
