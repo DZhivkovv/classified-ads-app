@@ -12,11 +12,15 @@ export default function AddClassifiedAd(){
         images:'',
       });
 
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         const {name, value} = e.target;
         setAdData({
             ...adData,
             [name]:value
+        })
+    }
     const handleImage = (e) => {
         setAdData({
             ...adData,
@@ -26,25 +30,29 @@ export default function AddClassifiedAd(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { title, description, price } = adData;
-        const requestBody = {
-          title,
-          description,
-          price,
-          username: userInfo.username,
-          userID: userInfo.userID,
-        };
 
+        if (!userInfo) {
+            console.error('userInfo is null');
+            return;
+          }
+
+        const formData = new FormData();
+        formData.append('title',adData.title);
+        formData.append('description',adData.description);
+        formData.append('price',adData.price);
+        formData.append('userID',userInfo.userID);
+        formData.append('username',userInfo.username);
+        formData.append('images',adData.images);
+
+        
         fetch('http://localhost:3001/advertisements', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(requestBody)
+          body:formData
         })    
+        .then(response => response.json())
+        .then(data => data.status === 200 ? navigate('/ads') : null);
     }
 
-    const navigate = useNavigate();
     useEffect(()=>{
         fetch('http://localhost:3001/api/isUserAuth',{
             headers: {
