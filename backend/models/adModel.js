@@ -37,6 +37,15 @@ const AdSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+
+  username: {
+    type: String,
+    required: true,
+  },
+
+  images: {
+    type:String
+  }
 });
 
 export default mongoose.model('Ad', AdSchema);
