@@ -5,7 +5,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser';
 import { dbConnect } from './core/db.js';
 import router from './routes/authRoutes.js';
-import adRouter from './routes/adRoutes.js'
+import adRouter from './routes/adRoutes.js';
 
 const app = express();
 app.use(express.json())
@@ -21,6 +21,10 @@ if(!port){
 }
 
 const db_url = process.env.DB_URL;
+if(!db_url){
+    console.log("DB_URL is not defined in .env file")
+    process.exit(1);
+}
 dbConnect(db_url);
 
 
