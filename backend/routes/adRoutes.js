@@ -1,5 +1,6 @@
 import express from 'express'
-import { saveAdvertisement } from '../controllers/adController.js';
+import multer from 'multer';
+import { saveAdvertisement, getAllAds } from '../controllers/adController.js';
 
 const adRouter = express.Router();
 
