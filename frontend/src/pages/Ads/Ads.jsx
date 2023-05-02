@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import './Ads.scss'
 
 export default function Ads(){
+    const [ads, setAds] = useState(null)
+
+    useEffect(()=>{
+        fetch('http://localhost:3001/getAllAds')
+        .then(response => response.json())
+        .then(data => {
+            setAds(data)        
+        })    
+    },[])
+
     return(
         <div className="ads--container">
             <Navbar
