@@ -3,14 +3,30 @@ import Ad from '../models/adModel.js'
 
 export const saveAdvertisement = async (request, response, next) => {
     const {title, description, price, userID, username} = request.body;
+    const images = request.file.filename;
 
-    const dbAd = new Ad({
-        title: title, 
-        description: description,
-        price: price,
-        postedBy: userID,
-    })
-
+    try{
+        const ad = new Ad({
+            title, 
+            description, 
+            price, 
+            postedBy:userID,
+            username,
+            images,
+        })
+        ad.save();
+        response.send({
+            status:200,
+            message:"Ad saved successfully"
+        })
+    } catch(error){
+        response.send({
+            status:500,
+            message:"Internal server error"
+        })
+    }
+}
+export const getAllAds = async (request, response, next) => {
     try{
         dbAd.save();
         console.log("Ad saved successfully!");
