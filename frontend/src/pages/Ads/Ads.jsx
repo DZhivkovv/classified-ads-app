@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
-import Ad from "../../components/Ad/Ad";
+import Ad from "../../components/Ad/Ad.jsx";
 import './Ads.scss'
 
 export default function Ads(){
