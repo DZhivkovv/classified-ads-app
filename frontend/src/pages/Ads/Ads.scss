@@ -1,9 +1,12 @@
 .ads--container{
     height: 100%;
+    width: 100%;
 
     .ads--main-section{
         height: 90%;
+        padding-top: 10px;
         position: relative;
+        background-color: rgb(232, 230, 230);
 
         h1{
             text-align: center;
