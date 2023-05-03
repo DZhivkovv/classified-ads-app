@@ -7,7 +7,7 @@ const AdSchema = new mongoose.Schema({
   title:{
     type: String,
     minlength: 2,
-    maxlength: 255,
+    maxlength: 100,
     required: true,
   },
 
