@@ -1,3 +1,61 @@
-.ad--image{
-    width: 200px;
+.ad{
+    width:40%;
+    display: flex;
+    height: 150px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 20px;
+
+    .ad-image{
+        width: 35%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        img{
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
+
+    .ad-main-text{
+        width: 35%;
+        display: flex;
+        flex-flow: column;
+        overflow: hidden;
+        
+        .h3{
+            margin-top: 20px;
+        }
+    }
+
+    .ad-details{
+        width: 30%;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-evenly;
+        .ad-details-text{
+            font-size: 14px;
+            h3{
+                font-weight: bold;
+            }
+        }
+
+        .button-container{
+            button{
+                padding: 15px 25px;
+                border: none;
+                background-color: rgb(218, 37, 218);
+                color: white;
+                font-weight: bold;
+                margin-bottom: 10px;
+
+                &:hover{
+                    background-color: rgb(176, 19, 176);
+                }
+            }    
+        }
+    }
 }
