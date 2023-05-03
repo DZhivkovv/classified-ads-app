@@ -44,8 +44,9 @@
         }
 
         .button-container{
-            button{
-                padding: 15px 25px;
+            a{
+                text-decoration: none;  
+                padding: 10px 20px;
                 border: none;
                 background-color: rgb(218, 37, 218);
                 color: white;
