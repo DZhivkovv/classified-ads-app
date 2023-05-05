@@ -70,9 +70,9 @@ export default function AddClassifiedAd(){
     },[])
 
       return(
-        <div className="addAd--container">
+        <div className="addAd-container">
             <form action="/advertisements" method="POST" onSubmit={handleSubmit} encType="multipart/form-data">
-            <div>
+            <div className="form-title">
                 <label for="title">Title:</label>
                 <input 
                     type="text" 
@@ -82,7 +82,7 @@ export default function AddClassifiedAd(){
                     required
                     />
             </div>
-            <div>
+            <div className="form-description">
                 <label for="description">Description:</label>
                 <textarea 
                 id="description" 
@@ -91,7 +91,7 @@ export default function AddClassifiedAd(){
                 required
                 />
             </div>
-            <div>
+            <div className="form-price">
                 <label for="price">Price:</label>
                 <input 
                 type="number" 
@@ -101,7 +101,7 @@ export default function AddClassifiedAd(){
                 required
                 />
             </div>
-            <div>
+            <div className="form-image">
                 <input
                 type="file"
                 accept=".png, .jpg, .jpeg"
