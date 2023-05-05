@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from '../../components/Navbar/Navbar.jsx'
 import './AddAd.scss'
 
 export default function AddClassifiedAd(){
@@ -71,6 +72,9 @@ export default function AddClassifiedAd(){
 
       return(
         <div className="addAd-container">
+            <Navbar
+                links={['Ads', 'Contact us']}
+            />
             <form action="/advertisements" method="POST" onSubmit={handleSubmit} encType="multipart/form-data">
             <div className="form-title">
                 <label for="title">Title:</label>
