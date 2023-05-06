@@ -75,46 +75,51 @@ export default function AddClassifiedAd(){
             <Navbar
                 links={['Ads', 'Contact us']}
             />
-            <form action="/advertisements" method="POST" onSubmit={handleSubmit} encType="multipart/form-data">
-            <div className="form-title">
-                <label for="title">Title:</label>
-                <input 
-                    type="text" 
-                    id="title" 
-                    name="title" 
+            <div className="form-container">
+                <form action="/advertisements" method="POST" onSubmit={handleSubmit} encType="multipart/form-data">
+                <div className="form-title">
+                    <label for="title">Title: <span>*</span></label>
+                    <input 
+                        type="text" 
+                        id="title" 
+                        name="title" 
+                        onChange={handleChange} 
+                        required
+                        />
+                </div>
+                <div className="form-description">
+                    <label for="description">Description: <span>*</span></label>
+                    <textarea 
+                    id="description" 
+                    name="description" 
                     onChange={handleChange} 
                     required
                     />
+                </div>
+                <div className="form-price">
+                    <label for="price">Price: <span>*</span></label>
+                    <input 
+                    type="number" 
+                    id="price" 
+                    name="price" 
+                    onChange={handleChange} 
+                    required
+                    />
+                </div>
+                <div className="form-image">
+                    <button className="imgbtn">
+                    <i class="fa-solid fa-camera"></i>
+                    </button>
+                    <input
+                    type="file"
+                    accept=".png, .jpg, .jpeg"
+                    name="images"
+                    onChange={handleImage}
+                    />
+                </div>
+                <button className="add-ad-btn">Add advertisement</button>
+                </form>
             </div>
-            <div className="form-description">
-                <label for="description">Description:</label>
-                <textarea 
-                id="description" 
-                name="description" 
-                onChange={handleChange} 
-                required
-                />
-            </div>
-            <div className="form-price">
-                <label for="price">Price:</label>
-                <input 
-                type="number" 
-                id="price" 
-                name="price" 
-                onChange={handleChange} 
-                required
-                />
-            </div>
-            <div className="form-image">
-                <input
-                type="file"
-                accept=".png, .jpg, .jpeg"
-                name="images"
-                onChange={handleImage}
-                />
-            </div>
-            <button>Add advertisement</button>
-            </form>
         </div>
     )
 }
