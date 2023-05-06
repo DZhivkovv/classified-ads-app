@@ -10,7 +10,7 @@ export default function AddClassifiedAd(){
         title: '',
         description: '',
         price: '',
-        category: '',
+        category: 'Real Estate', //Default category value (it no category is selected it will be Real Estate)
         images:'',
       });
 
