@@ -10,6 +10,7 @@ export default function AddClassifiedAd(){
         title: '',
         description: '',
         price: '',
+        category: '',
         images:'',
       });
 
@@ -17,6 +18,7 @@ export default function AddClassifiedAd(){
 
     const handleChange = (e) => {
         const {name, value} = e.target;
+        console.log(adData)
         setAdData({
             ...adData,
             [name]:value
@@ -41,10 +43,10 @@ export default function AddClassifiedAd(){
         formData.append('title',adData.title);
         formData.append('description',adData.description);
         formData.append('price',adData.price);
+        formData.append('category',adData.category);
         formData.append('userID',userInfo.userID);
         formData.append('username',userInfo.username);
         formData.append('images',adData.images);
-
         
         fetch('http://localhost:3001/advertisements', {
           method: 'POST',
@@ -117,6 +119,21 @@ export default function AddClassifiedAd(){
                     onChange={handleImage}
                     />
                 </div>
+                <div className="form-category">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" onChange={handleChange}>
+                        <option value="Real Estate">Real Estate</option>
+                        <option value="Vehicles">Vehicles</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Home and Garden">Home and Garden</option>
+                        <option value="Services">Services</option>
+                        <option value="Jobs">Jobs</option>
+                        <option value="Clothing and Shoes">Clothing and Shoes</option>
+                        <option value="Pets">Pets</option>
+                    </select>
+
+                </div>
+
                 <button className="add-ad-btn">Add advertisement</button>
                 </form>
             </div>
