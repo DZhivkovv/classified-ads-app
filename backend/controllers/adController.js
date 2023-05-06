@@ -2,7 +2,7 @@ import Ad from '../models/adModel.js'
 
 export const saveAdvertisement = async (request, response, next) => {
     const {title, description, price, category, userID, username} = request.body;
-    const images = request.file.filename;
+    const images = request.files.map(file => file.filename);
 
     try{
         const ad = new Ad({

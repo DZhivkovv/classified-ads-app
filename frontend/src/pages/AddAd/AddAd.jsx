@@ -11,7 +11,7 @@ export default function AddClassifiedAd(){
         description: '',
         price: '',
         category: 'Real Estate', //Default category value (it no category is selected it will be Real Estate)
-        images:'',
+        images:[],
       });
 
     const navigate = useNavigate();
@@ -25,10 +25,10 @@ export default function AddClassifiedAd(){
         })
     }
     const handleImage = (e) => {
-        setAdData({
-            ...adData,
-            images: e.target.files[0]
-        }) 
+        const files = Array.from(e.target.files); 
+        setAdData(prevAdData => ({ ...prevAdData,
+            images: [...prevAdData.images, ...files]
+        }));
     }
 
     const handleSubmit = (e) => {
@@ -46,8 +46,11 @@ export default function AddClassifiedAd(){
         formData.append('category',adData.category);
         formData.append('userID',userInfo.userID);
         formData.append('username',userInfo.username);
-        formData.append('images',adData.images);
-        
+        for (let i = 0; i < adData.images.length; i++) {
+            formData.append('images', adData.images[i]);
+          }
+      
+
         fetch('http://localhost:3001/advertisements', {
           method: 'POST',
           body:formData
@@ -117,6 +120,7 @@ export default function AddClassifiedAd(){
                     accept=".png, .jpg, .jpeg"
                     name="images"
                     onChange={handleImage}
+                    multiple
                     />
                 </div>
                 <div className="form-category">

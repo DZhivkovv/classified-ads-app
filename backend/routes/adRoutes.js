@@ -25,7 +25,7 @@ const fileFilter = (req,file, cb) => {
 
 const upload = multer({storage, fileFilter})
 
-adRouter.post('/advertisements', upload.single('images'), saveAdvertisement)
+adRouter.post('/advertisements', upload.array('images'), saveAdvertisement)
 adRouter.get('/ads/:id', getSingleAd)
 adRouter.get('/getAllAds', getAllAds)
 

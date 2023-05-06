@@ -49,9 +49,9 @@ const AdSchema = new mongoose.Schema({
     required: true,
   },
 
-  images: {
+  images: [{
     type:String
-  }
+  }]
 });
 
 export default mongoose.model('Ad', AdSchema);
