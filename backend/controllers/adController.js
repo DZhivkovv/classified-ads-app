@@ -1,7 +1,7 @@
 import Ad from '../models/adModel.js'
 
 export const saveAdvertisement = async (request, response, next) => {
-    const {title, description, price, userID, username} = request.body;
+    const {title, description, price, category, userID, username} = request.body;
     const images = request.file.filename;
 
     try{
@@ -9,6 +9,7 @@ export const saveAdvertisement = async (request, response, next) => {
             title, 
             description, 
             price, 
+            category,
             postedBy:userID,
             username,
             images,
