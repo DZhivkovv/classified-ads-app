@@ -1,0 +1,103 @@
+.addAd-container{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(232, 230, 230);
+
+
+    .form-container{
+        width: 100%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    form{
+        width: 500px;
+        min-width: 300px;
+        padding: 20px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        background-color: white;
+        border-radius: 10px;
+      
+        input{
+            /*Hides the arrows in input type number*/
+            
+            /* Firefox */
+            &[type=number]{
+                -moz-appearance: textfield;
+
+            }
+
+             /* Chrome, Safari, Edge, Opera */
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button
+            {
+                margin: 0;
+                -webkit-appearance: none;        
+            }
+        }
+
+        input, textarea{
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            resize: none;
+            background-color: rgb(232, 230, 230);
+        }
+
+        label{
+            margin: 10px 0px;
+            display: block;
+            text-align: center;
+        }
+    }
+
+    .form-image{
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+
+        .imgbtn{
+            width: 100px;
+            height: 70px;
+            margin-top: 20px;
+            border: none;
+            color: gray;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color:rgb(232, 230, 230) ;
+
+            &:hover{
+                background-color: black;
+            }
+        }
+
+        input[type=file]{
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;  
+        }
+    }
+
+    .add-ad-btn{
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: .2s;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(218, 37, 218);
+
+        &:hover{
+            background-color: white;
+            color: black;
+            outline: 1px solid gray;
+        }
+}}
