@@ -23,7 +23,7 @@ export default function Ads(){
             <section className="ads--main-section">
                 {
                     ads?
-                    ads.map(ad => <Ad key = {ad._id} id = {ad._id} title = {ad.title} description = {ad.description} price = {ad.price} username = {ad.username} date={ad.date} images = {ad.images}/>)
+                    ads.map(ad => <Ad key = {ad._id} id = {ad._id} title = {ad.title} description = {ad.description} price = {ad.price} username = {ad.username} date={ad.date} images = {ad.images[0]}/>)
                     :
                     null
                 }                
