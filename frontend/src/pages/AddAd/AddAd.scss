@@ -54,6 +54,15 @@
         }
     }
 
+    .form-category{
+        select{
+            padding: 10px ;
+            border: none;
+            text-align: center;
+            cursor: pointer;
+        }
+    }
+    
     .form-image{
         position: relative;
         overflow: hidden;
