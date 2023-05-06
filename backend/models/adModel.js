@@ -27,6 +27,12 @@ const AdSchema = new mongoose.Schema({
     }
   },
 
+  category: {
+    type: String,
+    required: true,
+    enum: ['Real Estate', 'Vehicles', 'Elecrtonics', 'Home and Garden', 'Services', 'Jobs', 'Clothing and Shoes', 'Pets']
+  },
+
   date: {
     type: Date,
     default: date
