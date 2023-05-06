@@ -1,112 +1,118 @@
+// Page container
 .addAd-container{
     width: 100%;
     height: 100%;
     background-color: rgb(232, 230, 230);
 
-
+    // Form container
     .form-container{
         width: 100%;
         height: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-    form{
-        width: 500px;
-        min-width: 300px;
-        padding: 20px;
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-        background-color: white;
-        border-radius: 10px;
-      
-        input{
-            /*Hides the arrows in input type number*/
-            
-            /* Firefox */
-            &[type=number]{
-                -moz-appearance: textfield;
-
-            }
-
-             /* Chrome, Safari, Edge, Opera */
-            &::-webkit-inner-spin-button,
-            &::-webkit-outer-spin-button
-            {
-                margin: 0;
-                -webkit-appearance: none;        
-            }
-        }
-
-        input, textarea{
-            padding: 10px;
-            border: none;
-            border-radius: 10px;
-            resize: none;
-            background-color: rgb(232, 230, 230);
-        }
-
-        label{
-            margin: 10px 0px;
-            display: block;
-            text-align: center;
-        }
-    }
-
-    .form-category{
-        select{
-            padding: 10px ;
-            border: none;
-            text-align: center;
-            cursor: pointer;
-        }
-    }
-    
-    .form-image{
-        position: relative;
-        overflow: hidden;
-        display: inline-block;
-
-        .imgbtn{
-            width: 100px;
-            height: 70px;
-            margin-top: 20px;
-            border: none;
-            color: gray;
-            border-radius: 8px;
-            font-size: 20px;
-            font-weight: bold;
-            background-color:rgb(232, 230, 230) ;
-
-            &:hover{
-                background-color: black;
-            }
-        }
-
-        input[type=file]{
-            font-size: 100px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;  
-        }
-    }
-
-    .add-ad-btn{
-        margin-top: 20px;
-        padding: 10px;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
-        transition: .2s;
-        font-weight: bold;
-        color: white;
-        background-color: rgb(218, 37, 218);
-
-        &:hover{
+        
+        form{
+            width: 500px;
+            min-width: 300px;
+            padding: 20px;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
             background-color: white;
-            color: black;
-            outline: 1px solid gray;
+            border-radius: 10px;
+          
+            input{
+                // Hides the arrows in input type number        
+                // Firefox
+                &[type=number]{
+                    -moz-appearance: textfield;
+    
+                }
+                 // Chrome, Safari, Edge, Opera 
+                &::-webkit-inner-spin-button,
+                &::-webkit-outer-spin-button
+                {
+                    margin: 0;
+                    -webkit-appearance: none;        
+                }
+
+                // Hides the default button for uploading images so it can be replaced by button which can be customized
+                &[type=file]{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    opacity: 0;  
+                    font-size: 100px;
+                }
+            }
+    
+            input, textarea{
+                padding: 10px;
+                resize: none; // Disables the resizable property of textarea
+                border: none;
+                border-radius: 10px;
+                background-color: rgb(232, 230, 230);
+            }
+    
+            label{
+                margin: 10px 0px;
+                display: block;
+                text-align: center;
+            }
+
+
+            // Select category option
+            .form-category{
+                select{
+                    padding: 10px ;
+                    border: none;
+                    text-align: center;
+                    cursor: pointer;
+                }
+            }    
+
+            // Add image option
+            .form-image{
+                position: relative;
+                display: inline-block;
+                overflow: hidden;
+        
+                .imgbtn{
+                    width: 100px;
+                    height: 70px;
+                    margin-top: 20px;
+                    border: none;
+                    border-radius: 8px;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: gray;
+                    background-color:rgb(232, 230, 230) ;
+        
+                    &:hover{
+                        background-color: black;
+                    }
+                }
+            }
+            
+            //Button for submitting ad
+            .add-ad-btn{
+                margin-top: 20px;
+                padding: 10px;
+                transition: .2s;
+                cursor: pointer;
+                border: none;
+                border-radius: 10px;
+                font-weight: bold;
+                color: white;
+                background-color: rgb(218, 37, 218);
+        
+                &:hover{
+                    outline: 1px solid gray;
+                    background-color: white;
+                    color: black;
+                }
+            }        
         }
-}}
+    }
+}
