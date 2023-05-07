@@ -18,7 +18,7 @@ function App() {
           <Route path='/addad' element={<AddClassifiedAd/>}/>
           <Route path='/register' element={<SignUp/>}/>
           <Route path='/login' element={<Login/>}/>
-          <Route path="/users/:username" element={<UserProfile/>} />
+          <Route path="/users/:id" element={<UserProfile/>} />
         </Routes>
       </BrowserRouter>
     </div>
