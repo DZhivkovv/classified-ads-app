@@ -47,6 +47,7 @@ export const getSingleAd = async ( request, response, next) => {
             description:ad.description,
             price:ad.price,
             date:ad.date,
+            userID: ad.postedBy,
             username: ad.username,
             images: ad.images,
         })
