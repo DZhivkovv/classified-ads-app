@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar.jsx'
 import { EmblaCarousel } from '../../components/Carousel/Carousel.jsx'
 import './Ad.scss'
@@ -43,7 +43,7 @@ export default function Ad(props){
                 </div>
                 <div className='ad-lower'>
                     <div className='ad-user-container'>
-                    <p>Posted by: {ad.username}</p>
+                    <p>Posted by: <Link to={`/users/${ad.userID}`}>{ad.username}</Link></p>
                     <img src={noProfilePic} className='default-profile' alt='No profile img'/>
 
                     <button>Text the seller</button>
