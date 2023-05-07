@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar.jsx'
+import { EmblaCarousel } from '../../components/Carousel/Carousel.jsx'
 import './Ad.scss'
 import noProfilePic from '../../assets/AdPage/noProfilePic.png'
 
@@ -27,7 +28,9 @@ export default function Ad(props){
             <div className='ad'>
                 <div className='ad-upper'>
                     <div className='ad-image-container'>
-                        <img src={`/images/${ad.images}`} alt={`${ad.title}`}/>
+                        <EmblaCarousel 
+                        images={ad.images}
+                        />
                     </div>
 
                     <div className='ad-data-container'>
