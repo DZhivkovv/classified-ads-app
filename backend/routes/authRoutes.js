@@ -1,5 +1,5 @@
 import express from 'express'
-import {register, login, isUserAuth} from '../controllers/authController.js'
+import {register, login, isUserAuth, getUserData} from '../controllers/authController.js'
 import { verifyJWT } from '../utils/auth.js';
 
 const router = express.Router();
@@ -10,5 +10,6 @@ router.get('/isUserAuth', isUserAuth)
 router.get('/getUsername', verifyJWT, (request, response) =>{
     response.json({isLoggedIn: true, username: request.user.username})
 })
+router.get('/users/:id', getUserData)
 
 export default router

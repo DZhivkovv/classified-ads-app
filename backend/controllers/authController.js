@@ -1,4 +1,5 @@
 import User from '../models/userModel.js'
+import Ad from '../models/adModel.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
@@ -101,3 +102,21 @@ export const isUserAuth = async (request, response) => {
   
     }
   } 
+
+export const getUserData = async ( request, response, next) => {
+    try{
+        const id = request.params.id;
+        const user = await User.findById(id);
+        const adCount = await Ad.countDocuments({ postedBy: id });
+        response.send({
+        status: 200,
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        adCount: adCount,
+        });
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({ error: 'Internal server error' });
+    }
+};
