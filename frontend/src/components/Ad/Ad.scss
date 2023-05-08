@@ -1,10 +1,12 @@
 .ad{
     width:500px;
-    display: flex;
     height: 150px;
+    margin-top: 20px;
+    margin-right: 20px;
+    display: flex;
+    float: right;
     border-radius: 10px;
     background-color: white;
-    margin-top: 20px;
 
     .ad-image{
         width: 35%;

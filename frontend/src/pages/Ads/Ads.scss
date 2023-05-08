@@ -2,11 +2,20 @@
     height: 100%;
     width: 100%;
 
-    .ads--main-section{
+    .main-section{
         height: 90%;
         padding-top: 10px;
         position: relative;
         background-color: rgb(232, 230, 230);
+
+        .all-ads{
+            width: 70%;
+            float: right;
+            height: 100%;
+            display: flex;
+            flex-flow: column;
+            align-items: flex-end;
+        }
 
         h1{
             text-align: center;
