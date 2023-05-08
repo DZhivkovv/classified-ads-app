@@ -1,0 +1,102 @@
+.profile-page-container{
+    height: 100%;
+    width: 100%;
+
+    .userProfile-container{
+        height: 90%;
+
+        .profile-upper{
+            height: 30%;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: space-evenly;
+            position: relative;
+            background: rgb(63,94,251);
+            background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);     
+
+            .user-username{
+                color: white;
+            }
+
+            .user-email{
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                color: white;
+                background-color: rgb(95, 66, 210);
+                padding: 20px;
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                border-radius: 50%;
+                cursor: pointer;
+
+                &:hover{
+                background-color: rgb(165, 68, 88);
+
+                }
+
+
+            }
+
+            img{
+            height: 140px;
+            margin-top: 10px;
+            border-radius: 50%;
+            outline: 3px solid white;
+               
+            }
+        }
+
+        .profile-lower{
+            height: 70%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            .profile-info{
+                width: 20%;
+                height: 80%;
+                margin-left: 10px;
+                display: flex;
+                flex-flow: column;
+                justify-content: space-around;
+                border-radius: 20px;
+                background-color: white;
+
+                text-align: center;
+                    .info{
+                    display: flex;
+                    justify-content: center;
+                    color: gray;
+                   
+                    p{
+                        margin-left: 10px;
+                    }
+                }    
+            }
+
+            .profile-ads{
+                width: 80%;
+                height: 80%;
+                border-radius: 20px;
+                margin-left: 20px;
+ 
+                .profile-ads-heading{
+                    text-align: center;
+                }
+
+                .ads-container{
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    text-align: center;
+                    .no-ads-message{
+                        margin-top: 20px;
+                        grid-column: 1/-1;
+                    }
+                }
+            }
+
+        }
+    }
+}
