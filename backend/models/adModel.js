@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-import User from './userModel.js'
-const now = new Date();
-const date = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
-
+import User from './userModel.js';
+import moment from 'moment-timezone';
+const defaultDate = moment().tz('Etc/GMT+3').toDate();
 const AdSchema = new mongoose.Schema({
   title:{
     type: String,
@@ -35,7 +34,7 @@ const AdSchema = new mongoose.Schema({
 
   date: {
     type: Date,
-    default: date
+    default: defaultDate,
   },
 
   postedBy:{
