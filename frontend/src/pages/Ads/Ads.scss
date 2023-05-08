@@ -7,6 +7,39 @@
         padding-top: 10px;
         position: relative;
         background-color: rgb(232, 230, 230);
+        display: flex;
+
+        .ads-search{
+            width: 30%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            
+            form{
+                display: flex;
+                flex-flow: column;
+                align-items: flex-start;
+
+                .search-title{
+                    border: none;
+                    padding: 20px;
+                    border-radius: 10px;
+                }    
+
+                button{
+                    margin: 10px auto;
+                    border: none;
+                    color: white;
+                    background-color: rgb(218, 37, 218);
+                    padding: 10px 20px;
+                    border-radius: 10px;
+
+                    &:hover{
+                        background-color: rgb(176, 19, 176);
+                    }
+                }
+            }
+        }
 
         .all-ads{
             width: 70%;
