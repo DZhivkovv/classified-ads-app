@@ -55,3 +55,14 @@ export const getSingleAd = async ( request, response, next) => {
         console.error(error)
     }
 }
+
+export const searchAds = async (request, response, next) => {
+    const searchQuery = request.query.search || "";
+  
+    try {
+        const ads = await Ad.find({ $text: { $search: searchQuery } });
+        response.json(ads)
+    } catch(error){
+        console.error(error)
+  }
+}

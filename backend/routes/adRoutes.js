@@ -1,6 +1,6 @@
 import express from 'express'
 import multer from 'multer';
-import { saveAdvertisement, getAllAds, getSingleAd } from '../controllers/adController.js';
+import { saveAdvertisement, getAllAds, getSingleAd, searchAds } from '../controllers/adController.js';
 
 const adRouter = express.Router();
 
@@ -28,5 +28,6 @@ const upload = multer({storage, fileFilter})
 adRouter.post('/advertisements', upload.array('images'), saveAdvertisement)
 adRouter.get('/ads/:id', getSingleAd)
 adRouter.get('/getAllAds', getAllAds)
+adRouter.get('/searchAds', searchAds)
 
 export default adRouter
