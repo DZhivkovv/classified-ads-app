@@ -8,7 +8,6 @@ export default function Ad(props){
             </div>
             <div className='ad-main-text'>
                 <h3>{props.title}</h3>
-                <p>{props.description}</p>
             </div>
             <div className='ad-details'>
                 <div className='ad-details-text'>
