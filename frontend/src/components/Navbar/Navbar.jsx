@@ -4,7 +4,7 @@ import './Navbar.scss'
 import logo from '../../assets/—Pngtree—corporate image logo free logo_1026060.png'
 
 export default function Navbar(props){
-    const [username, setUsername] = useState(null)
+    const [user, setUser] = useState(null)
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const allLinks = props.links.map(
@@ -26,7 +26,7 @@ export default function Navbar(props){
         })
         .then(response => response.json())
         .then(data => {
-            setUsername(data.username);
+            setUser(data);
             setIsLoggedIn(data.isLoggedIn);
         })
     },[])
@@ -49,7 +49,7 @@ export default function Navbar(props){
                 {isLoggedIn === true ? 
                 <div className="nav--right">
                     <li className="profile">
-                        <Link to={`/users/${username}`}>{username}</Link>
+                        <Link to={`/users/${user.userID}`}>{user.username}</Link>
                     </li>
                     <div className="logout" onClick={handleLogout}>Logout</div>
                 </div>
