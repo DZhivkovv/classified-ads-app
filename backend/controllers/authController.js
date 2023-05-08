@@ -108,15 +108,17 @@ export const getUserData = async ( request, response, next) => {
         const id = request.params.id;
         const user = await User.findById(id);
         const adCount = await Ad.countDocuments({ postedBy: id });
+        const userAds = await Ad.find({ postedBy: id }).sort({date: -1}).limit(4);
+        
         response.send({
         status: 200,
         id: user._id,
         username: user.username,
         email: user.email,
+        userAds: userAds,
         adCount: adCount,
         });
     } catch (error) {
-        console.error(error);
         response.status(500).json({ error: 'Internal server error' });
     }
 };
