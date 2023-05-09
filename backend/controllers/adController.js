@@ -28,12 +28,25 @@ export const saveAdvertisement = async (request, response, next) => {
     }
 }
 export const getAllAds = async (request, response, next) => {
-    try{
-        const ads = await Ad.find();
-        response.json(ads)
-    } catch(error){
-        res.status(500).json({ message: 'Internal server error' });
-    }
+    try {
+        // Defines the number of ads to display per page
+        const page_size = 4;
+    
+        // Extracts the page number from the request query parameter, default to 0 if not provided
+        const page = parseInt(request.query.page || "0");
+    
+        // Counts the total number of ads in the collection
+        const total = await Ad.countDocuments({});
+    
+        // Retrieves the ads for the specified page using pagination
+        const ads = await Ad.find().limit(page_size).skip(page_size * page);
+    
+        response.json({
+            totalPages: Math.ceil(total / page_size),  // Calculate the total number of pages
+            ads,  // Send the retrieved ads
+        });
+    } catch (error) {
+    }    
 }
 
 export const getSingleAd = async ( request, response, next) => {
@@ -57,7 +70,7 @@ export const getSingleAd = async ( request, response, next) => {
 }
 
 export const searchAds = async (request, response, next) => {
-    const searchQuery = request.query.search || "";
+        const searchQuery = request.query.search || "";
   
     try {
         const ads = await Ad.find({ $text: { $search: searchQuery } });
