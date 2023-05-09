@@ -13,6 +13,7 @@ export default function Ad(props){
                 <div className='ad-details-text'>
                 <p>{props.price} leva</p>
                 <p>by {props.username}</p>
+                <p>{props.category}</p>
                 <p>{props.date.slice(0,10)}</p>
                 </div>
                 <div className='button-container'>
