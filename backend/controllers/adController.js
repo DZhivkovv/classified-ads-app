@@ -1,7 +1,7 @@
 import Ad from '../models/adModel.js'
 
 export const saveAdvertisement = async (request, response, next) => {
-    const {title, description, price, category, userID, username} = request.body;
+    const {title, description, price, category, userID, username, isFreeShipping, isNew} = request.body;
 
         const images = request.files.length > 0 ? request.files.map(file => file.filename) : ['no-images-available.png']
 
@@ -14,6 +14,8 @@ export const saveAdvertisement = async (request, response, next) => {
             postedBy:userID,
             username,
             images,
+            isFreeShipping,
+            isNew,
         })
         ad.save();
         response.send({
@@ -70,12 +72,42 @@ export const getSingleAd = async ( request, response, next) => {
 }
 
 export const searchAds = async (request, response, next) => {
-        const searchQuery = request.query.search || "";
-  
-    try {
-        const ads = await Ad.find({ $text: { $search: searchQuery } });
-        response.json(ads)
-    } catch(error){
-        console.error(error)
+  const searchQuery = request.query.search || "";
+  const category = request.query.category || "";
+  const page = parseInt(request.query.page || "0");
+  const page_size = 4;   // Defines the number of ads to display per page
+
+  try {
+    let query = Ad.find();
+
+    if (searchQuery.length) {
+      query = query.or([{ title: { $regex: searchQuery, $options: "i" } }]);
+    } else if (searchQuery.length === 0 && category.length === 0) {
+      query = query.where("_id").equals(null); // Return no ads
+    }
+
+    if (category.length) {
+      query = query.where("category").equals(category);
+    }
+
+    const totalAdsQuery = query.model.countDocuments(query.getFilter()); // Count the total number of ads based on the current query
+    const adsQuery = query
+      .skip(page_size * page)
+      .limit(page_size);
+
+    const [totalAds, ads] = await Promise.all([totalAdsQuery, adsQuery]);
+
+    // Calculate the total number of pages based on the filtered ads count
+    const totalPages = Math.ceil(totalAds / page_size);
+
+    response.json({
+      totalPages,
+      ads, // Send the retrieved ads
+    });
+  } catch (error) {
+    response.send({
+      status:500,
+      message:"Internal server error"
+    })
   }
-}
+};
