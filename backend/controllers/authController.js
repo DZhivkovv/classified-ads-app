@@ -7,7 +7,7 @@ import { response } from 'express'
 dotenv.config({path:'../.env'})
 
 export const register = async (request, response, next) => {
-    const {email, username, password} = request.body;
+    const {email, username, password, location} = request.body;
 
     const takenEmail = await User.findOne({"email": email});
     const takenUsername = await User.findOne({"username": username});
@@ -22,7 +22,8 @@ export const register = async (request, response, next) => {
         const dbUser = new User({
             email:email,
             username: username,
-            password:hashedPassword
+            password:hashedPassword,
+            location: location
         })
 
         dbUser.save();
@@ -115,6 +116,8 @@ export const getUserData = async ( request, response, next) => {
         id: user._id,
         username: user.username,
         email: user.email,
+        location: user.location,
+        memberSince: user.createdAt,
         userAds: userAds,
         adCount: adCount,
         });

@@ -20,7 +20,6 @@ export default function UserProfile() {
     return <div>Loading...</div>
 }
 
-
   return (
     <div className="profile-page-container">
       <Navbar
@@ -42,12 +41,12 @@ export default function UserProfile() {
 
             <div className="info user-location">
               <i class="fa-solid fa-city"></i>
-              <p>From: </p>
+              <p>From: {user.location || "Unknown"}</p>
             </div>
 
             <div className="info user-memberSince">
               <i class="fa-solid fa-clock"></i>
-              <p>Member since: </p>
+              <p>Member since: {user.memberSince.split("T")[0]}</p>
             </div>
 
             <div className="info user-adsNumber">
@@ -62,7 +61,7 @@ export default function UserProfile() {
  
             <div className="ads-container">
               {
-                user.userAds.length > 0 ? 
+                user.userAds && user.userAds.length > 0 ? 
                 user.userAds.map(ad => 
                 <Ad 
                   key = {ad._id} 
