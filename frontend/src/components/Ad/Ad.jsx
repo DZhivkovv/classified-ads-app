@@ -8,6 +8,10 @@ export default function Ad(props){
             </div>
             <div className='ad-main-text'>
                 <h3>{props.title}</h3>
+                <div className='ad-details-icons'>
+                    {props.freeShipping === true && <i title="Free Shipping! The shipping will be paid by the seller." class="fa-solid fa-truck"></i>}
+                    {props.itemIsNew === true && <i title = "The item is new" class="fa-solid fa-box"></i>}
+                </div>
             </div>
             <div className='ad-details'>
                 <div className='ad-details-text'>

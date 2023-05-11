@@ -12,18 +12,27 @@ export default function AddClassifiedAd(){
         price: '',
         category: 'Real Estate', //Default category value (it no category is selected it will be Real Estate)
         images:[],
+        isFreeShipping: false,
+        itemIsNew: true
       });
 
     const navigate = useNavigate();
+      const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+      
+        if (type === "checkbox") {
+          setAdData((prevAdData) => ({
+            ...prevAdData,
+            [name]: checked,
+          }));
+        } else {
+          setAdData((prevAdData) => ({
+            ...prevAdData,
+            [name]: value,
+          }));
+        }
+      };
 
-    const handleChange = (e) => {
-        const {name, value} = e.target;
-        console.log(adData)
-        setAdData({
-            ...adData,
-            [name]:value
-        })
-    }
     const handleImage = (e) => {
         const files = Array.from(e.target.files); 
         setAdData(prevAdData => ({ ...prevAdData,
@@ -37,7 +46,7 @@ export default function AddClassifiedAd(){
         if (!userInfo) {
             console.error('userInfo is null');
             return;
-          }
+        }
 
         const formData = new FormData();
         formData.append('title',adData.title);
@@ -49,8 +58,9 @@ export default function AddClassifiedAd(){
         for (let i = 0; i < adData.images.length; i++) {
             formData.append('images', adData.images[i]);
           }
-      
-
+        formData.append('isFreeShipping',adData.isFreeShipping);
+        formData.append('itemIsNew',Boolean(adData.itemIsNew));
+        
         fetch('http://localhost:3001/advertisements', {
           method: 'POST',
           body:formData
@@ -135,9 +145,26 @@ export default function AddClassifiedAd(){
                         <option value="Clothing and Shoes">Clothing and Shoes</option>
                         <option value="Pets">Pets</option>
                     </select>
-
                 </div>
-
+                <div className="form-freeShipping">
+                    <label>
+                    <input type="checkbox" name="isFreeShipping" onChange={handleChange}/>
+                        Is shipping free?
+                        <br/>
+                        <span>
+                            By marking this button, you are informing potential buyers that you will cover the shipping cost.
+                        </span>
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="itemIsNew"
+                            checked={adData.itemIsNew}
+                            onChange={handleChange}
+                        />
+                        Is the item you are selling new?
+                    </label>
+                </div>
                 <button className="add-ad-btn">Add advertisement</button>
                 </form>
             </div>

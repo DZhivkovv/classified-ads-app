@@ -1,9 +1,9 @@
 import Ad from '../models/adModel.js'
 
 export const saveAdvertisement = async (request, response, next) => {
-    const {title, description, price, category, userID, username, isFreeShipping, isNew} = request.body;
+    const {title, description, price, category, userID, username, isFreeShipping, itemIsNew} = request.body;
 
-        const images = request.files.length > 0 ? request.files.map(file => file.filename) : ['no-images-available.png']
+    const images = request.files.length > 0 ? request.files.map(file => file.filename) : ['no-images-available.png']
 
     try{
         const ad = new Ad({
@@ -15,8 +15,8 @@ export const saveAdvertisement = async (request, response, next) => {
             username,
             images,
             isFreeShipping,
-            isNew,
-        })
+            itemIsNew,
+          })
         ad.save();
         response.send({
             status:200,
