@@ -20,7 +20,8 @@ export default function Ads() {
     const [category, setCategory] = useState(""); // Stores the category for filtering ads by category
     const [selectedCategory, setSelectedCategory] = useState(""); // Stores the selected category
 
-    const categories = ['Real Estate', 'Vehicles', 'Electronics', 'Home and Garden', 'Services', 'Jobs', 'Clothing and Shoes', 'Pets']; //The categories an ad can be.
+
+    const categories = ['Real Estate', 'Vehicles', 'Electronics', 'Home and Garden', 'Services', 'Jobs', 'Clothing and Shoes', 'Pets']; //The categories an ad can be. This array is used to generate radio buttons for each element in the array.
 
     const handleCategoryChange = (event) => {
         const category = event.target.value;
@@ -88,9 +89,9 @@ export default function Ads() {
         let url = `http://localhost:3001/searchAds?search=${encodeURIComponent(searchQuery)}`;
         if (category) {
           url += `&category=${encodeURIComponent(category)}`;
-        }
+        };
         url += `&page=${filteredPageNumber}`;
-      
+
         fetch(url)
           .then((response) => response.json())
           .then((data) => {
@@ -107,83 +108,92 @@ export default function Ads() {
             />
             <section className="main-section">
                 <div className="ads-search">
-                <form onSubmit={handleSearch}>
+                    <form onSubmit={handleSearch}>
 
-                {/*Search bar for searching ads */}
-                <input
-                type="text"
-                className="search-title"
-                onChange={handleSearch}
-                placeholder="Search"
-                />
+                    {/*Search bar for searching ads */}
+                        <input
+                            type="text"
+                            className="search-title"
+                            onChange={handleSearch}
+                            placeholder="Search"
+                        />
 
-
-                {/*Filter ads by categories */}
-                <label className="category-option">
-                <input
-                    type="radio"
-                    name="category"
-                    value=""
-                    checked={selectedCategory === ""}
-                    onChange={handleCategoryChange}
-                />
-                All Categories
-                </label>
-                
-                {categories.map((category, index) => (
-                <label key={index} className="category-option">
-                    <input
-                    type="radio"
-                    name="category"
-                    value={category}
-                    checked={category === selectedCategory}
-                    onChange={handleCategoryChange}
-                    />
-                    {category}
-                </label>
-                ))}
-
-          </form>
-        </div>
+                        <div className="ads-search-categories">                    
+                            <h3>Filter by category:</h3>
+                            {/*Filter ads by categories */}
+                            <div className="categories">
+                                <label className="category-option">
+                                <br/><br/>
+                                <input
+                                    type="radio"
+                                    name="category"
+                                    value=""
+                                    className="categories-nofilter"
+                                    checked={selectedCategory === ""}
+                                    onChange={handleCategoryChange}
+                                />
+                                All Categories
+                                </label>
+                                {/*Render radio buttons for each category in categories array */}
+                                {categories.map((category, index) => (
+                                <label key={index} className="category-option">
+                                    <input
+                                    type="radio"
+                                    name="category"
+                                    className={category.toLowerCase()}
+                                    value={category}
+                                    checked={category === selectedCategory}
+                                    onChange={handleCategoryChange}
+                                    />
+                                    {category}
+                                </label>
+                                ))}                        
+                            </div>                
+                        </div>
+                    </form>
+                </div>
 
         <div className="all-ads">
-            {searchedAds && searchedAds.length === 0 ? (
-                ads ? 
-                (
+            {/* Render ads if there are no searched ads and no search query or selected category */}
+            {searchedAds && searchedAds.length === 0 && searchQuery.length === 0 && selectedCategory.length === 0 && (
+                ads ? (
                 ads.map((ad) => (
                     <Ad
-                        key={ad._id}
-                        id={ad._id}
-                        title={ad.title}
-                        description={ad.description}
-                        price={ad.price}
-                        username={ad.username}
-                        category={ad.category}
-                        date={ad.date}
-                        images={ad.images[0]}
-                        freeShipping={ad.isFreeShipping}
-                    />
-                    ))
-                ) : null
-            ) 
-            : 
-            (
-            searchedAds &&
-            searchedAds.map((ad) => (
-                    <Ad
-                        key={ad._id}
-                        id={ad._id}
-                        title={ad.title}
-                        description={ad.description}
-                        price={ad.price}
-                        username={ad.username}
-                        category={ad.category}
-                        date={ad.date}
-                        images={ad.images[0]}
-                        freeShipping={ad.isFreeShipping}
+                    key={ad._id}
+                    id={ad._id}
+                    title={ad.title}
+                    description={ad.description}
+                    price={ad.price}
+                    username={ad.username}
+                    category={ad.category}
+                    date={ad.date}
+                    images={ad.images[0]}
+                    freeShipping={ad.isFreeShipping}
                     />
                 ))
+                ) : null
             )}
+
+            {/* Render "No ads found" message if there are no searched ads but there is a search query or selected category */}
+            {searchedAds && searchedAds.length === 0 && (searchQuery.length !== 0 || selectedCategory.length !== 0) && (
+                <p>No ads found.</p>
+            )}
+
+            {/* Render searched ads */}
+            {searchedAds && searchedAds.length > 0 && searchedAds.map((ad) => (
+                <Ad
+                key={ad._id}
+                id={ad._id}
+                title={ad.title}
+                description={ad.description}
+                price={ad.price}
+                username={ad.username}
+                category={ad.category}
+                date={ad.date}
+                images={ad.images[0]}
+                freeShipping={ad.isFreeShipping}
+                />
+            ))}
         </div>
 
         {/*Pagination for all ads*/}
