@@ -13,7 +13,7 @@ export const EmblaCarousel = (props) => {
 
     const sliders = props.images.map(image => (
         <div className="embla__slide">
-            <img src={`/images/${image}`}/>
+            <img src={image}/>
         </div>
 
     ))
