@@ -1,34 +1,47 @@
-import Ad from '../models/adModel.js'
+import Ad from '../models/adModel.js';
+import cloudinary from 'cloudinary';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 export const saveAdvertisement = async (request, response, next) => {
-    const {title, description, price, category, userID, username, isFreeShipping, isNew} = request.body;
+  const { title, description, price, category, userID, username, isFreeShipping, isNew } = request.body;
+  const images = request.files;
 
-        const images = request.files.length > 0 ? request.files.map(file => file.filename) : ['no-images-available.png']
+  try {
+    const imageUrls = await Promise.all(
+      images.map(async (file) => {
+        const result = await cloudinary.uploader.upload(file.path);
+        return result.secure_url;
+      })
+    );
 
-    try{
-        const ad = new Ad({
-            title, 
-            description, 
-            price, 
-            category,
-            postedBy:userID,
-            username,
-            images,
-            isFreeShipping,
-            isNew,
-        })
-        ad.save();
-        response.send({
-            status:200,
-            message:"Ad saved successfully"
-        })
-    } catch(error){
-        response.send({
-            status:500,
-            message:"Internal server error"
-        })
-    }
-}
+    const ad = new Ad({
+      title,
+      description,
+      price,
+      category,
+      postedBy: userID,
+      username,
+      images: imageUrls,
+      isFreeShipping,
+      isNew,
+    });
+
+    await ad.save();
+
+    response.send({
+      status: 200,
+      message: "Ad saved successfully",
+    });
+  } catch (error) {
+    response.send({
+      status: 500,
+      message: "Internal server error",
+    });
+  }
+};
+
 export const getAllAds = async (request, response, next) => {
     try {
         // Defines the number of ads to display per page

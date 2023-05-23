@@ -1,33 +1,29 @@
-import express from 'express'
+import express from 'express';
+import cloudinary from 'cloudinary';
 import multer from 'multer';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import { saveAdvertisement, getAllAds, getSingleAd, searchAds } from '../controllers/adController.js';
 
 const adRouter = express.Router();
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb){
-        cb(null, '../frontend/public/images');
-    },
-
-    filename: function(req, file, cb){
-        cb(null, Date.now() + '-' + file.originalname)
-    }
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-const fileFilter = (req,file, cb) => {
-    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png']
-    if(allowedFileTypes.includes(file.mimetype)){
-        cb(null, true);
-    } else {
-        cb(null, false);
-    }
-}
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary.v2,
+  params: {
+    format: async (req, file) => 'jpg',
+  }
+});
 
-const upload = multer({storage, fileFilter})
+const upload = multer({ storage });
 
-adRouter.post('/advertisements', upload.array('images'), saveAdvertisement)
-adRouter.get('/ads/:id', getSingleAd)
-adRouter.get('/getAllAds', getAllAds)
-adRouter.get('/searchAds', searchAds)
+adRouter.post('/advertisements', upload.array('images'), saveAdvertisement);
+adRouter.get('/ads/:id', getSingleAd);
+adRouter.get('/getAllAds', getAllAds);
+adRouter.get('/searchAds', searchAds);
 
-export default adRouter
+export default adRouter;
