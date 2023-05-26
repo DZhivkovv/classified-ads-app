@@ -54,7 +54,7 @@ export const login = async (request, response) => {
                     jwt.sign(
                         payload,
                         process.env.JWT_SECRET,
-                        {expiresIn: 10},
+                        {expiresIn: 86400},
                         (error, token) => {
                             if(error) reject(error);
                             resolve(token);
