@@ -50,7 +50,17 @@ const AdSchema = new mongoose.Schema({
 
   images: [{
     type:String
-  }]
+  }],
+
+  isFreeShipping: {
+    type: Boolean,
+    default: false,
+  },
+
+  itemIsNew:{
+    type: Boolean,
+    default: true,
+  }
 });
 
 export default mongoose.model('Ad', AdSchema);
