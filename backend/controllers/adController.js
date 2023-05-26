@@ -41,7 +41,6 @@ export const saveAdvertisement = async (request, response, next) => {
     });
   }
 };
-
 export const getAllAds = async (request, response, next) => {
     try {
         // Defines the number of ads to display per page
