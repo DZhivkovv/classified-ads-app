@@ -2,7 +2,13 @@
     border-radius: 10px;
     transition: .5s;
     margin: 0 auto;
-    outline: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img{
+        width: 80%;
+    }
 
     &:hover{
         transform: scale(1.05);

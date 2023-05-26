@@ -70,8 +70,6 @@ export default function Ads() {
         setFilteredActivePage(Math.min(filteredNumberOfPages - 1, filteredPageNumber + 1));
         // Set the activePage state to the same value as pageNumber. Updates the active button to reflect the updated page number
     };
-      
-
     // Fetches all ads when the component mounts
     useEffect(() => {
         fetch(`http://localhost:3001/getAllAds?page=${pageNumber}`)
@@ -169,6 +167,7 @@ export default function Ads() {
                     date={ad.date}
                     images={ad.images[0]}
                     freeShipping={ad.isFreeShipping}
+                    itemIsNew = {ad.itemIsNew}
                     />
                 ))
                 ) : null
@@ -192,6 +191,7 @@ export default function Ads() {
                 date={ad.date}
                 images={ad.images[0]}
                 freeShipping={ad.isFreeShipping}
+                itemIsNew = {ad.itemIsNew}
                 />
             ))}
         </div>
