@@ -54,7 +54,7 @@ export const login = async (request, response) => {
                     jwt.sign(
                         payload,
                         process.env.JWT_SECRET,
-                        {expiresIn: 86400},
+                        {expiresIn: 10},
                         (error, token) => {
                             if(error) reject(error);
                             resolve(token);
@@ -69,7 +69,11 @@ export const login = async (request, response) => {
                     token:token
                 })
             } catch (error) {
-                return response.status(400).json({message: error})
+                if(error.name === "TokenExpiredError"){
+                    return response.status(401).json({message: "Token has expired"})
+                } else{
+                    return response.status(400).json({ message: error.message });                
+                }
             }
         } else {
             return response.status(400).json({
@@ -81,28 +85,37 @@ export const login = async (request, response) => {
 }
 
 export const isUserAuth = async (request, response) => {
-    // Get the token from the request header
-    const token = request.headers['x-access-token'];
-    const tokenValue = token === 'null' ? null : token
-    if(!tokenValue){
-      response.send({
-        status: 404,
-        isLoggedIn: false,
-        message:"Token not found",
-      })  
-    } else{
-      const decodedToken = jwt.verify(tokenValue, process.env.JWT_SECRET)
-      const username = decodedToken.username
-      const userID = decodedToken.id  
-      response.send({
-        status:200,
-        username,
-        userID,
-        isLoggedIn: true,
-      })
-  
+    try {
+      // Get the token from the request header
+      const token = request.headers['x-access-token'];
+      const tokenValue = token === 'null' ? null : token;
+    
+      if (!tokenValue) {
+        return response.status(404).json({
+          status: 404,
+          isLoggedIn: false,
+          message: 'Token not found',
+        });
+      } else {
+        const decodedToken = jwt.verify(tokenValue, process.env.JWT_SECRET);
+        const username = decodedToken.username;
+        const userID = decodedToken.id;
+    
+        return response.status(200).json({
+          status: 200,
+          username,
+          userID,
+          isLoggedIn: true,
+        });
+      }
+    } catch (error) {
+      if (error.name === 'TokenExpiredError') {
+        return response.status(401).json({ message: 'Token has expired' });
+      } else {
+        return response.status(400).json({ message: 'Invalid token' });
+      }
     }
-  } 
+  };
 
 export const getUserData = async ( request, response, next) => {
     try{
