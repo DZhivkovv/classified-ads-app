@@ -7,14 +7,14 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Email is a required field"],
         trim: true,
         lowercase: true,
-        unique: [true,"A user with such email already exists!"],
+        unique: [true, "A user with such email already exists!"],
         validate(value) {
             if (!validator.isEmail(value)) {
                 throw new Error("Please enter a valid E-mail!");
             }
         },
     },
-    username:{
+    username: {
         type: String,
         trim: true,
         required: true,
@@ -30,6 +30,15 @@ const UserSchema = new mongoose.Schema({
                 );
             }
         }
+    },
+    location: {
+        type: String,
+        default: "Not specified",
+        required: false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 });
 
