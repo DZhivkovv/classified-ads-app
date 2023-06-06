@@ -74,7 +74,7 @@ export default function SignUp(){
                             <p className="validation-msg">The password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from the set @$!%*?& and be at least 8 characters long.</p>
                         </div>
                         <div className="input-field">
-                            <i className="fa-solid fa-town"></i>
+                            <i className="fa-solid fa-city"></i>
                             <input type="text" name="location" placeholder="Where are you from" onChange={handleChange} ></input>
                         </div>
                     </div>
