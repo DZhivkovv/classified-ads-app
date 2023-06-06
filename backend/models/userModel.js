@@ -14,12 +14,13 @@ const UserSchema = new mongoose.Schema({
             }
         },
     },
-    username: {
+    username:{
         type: String,
         trim: true,
         required: true,
         unique: true
     },
+
     password: {
         type: String,
         required: [true, "Password is a required field"],
@@ -31,15 +32,16 @@ const UserSchema = new mongoose.Schema({
             }
         }
     },
+
     location: {
         type: String,
-        default: "Not specified",
-        required: false
+        default: "Unknown",
     },
-    createdAt: {
+
+    memberSince: {
         type: Date,
-        default: Date.now
-    }
+        default: Date.now,
+    },
 });
 
 export default mongoose.model('User', UserSchema);
