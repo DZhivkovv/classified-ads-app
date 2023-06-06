@@ -3,8 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Navbar from '../../components/Navbar/Navbar.jsx'
 import './AddAd.scss'
 
+
+import { Oval } from  'react-loader-spinner'
+
 export default function AddClassifiedAd(){
     const [userInfo, setUserInfo] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     const [adData, setAdData] = useState({
         title: '',
@@ -42,11 +46,12 @@ export default function AddClassifiedAd(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         if (!userInfo) {
             console.error('userInfo is null');
             return;
         }
+
+        setIsLoading(true)
 
         const formData = new FormData();
         formData.append('title',adData.title);
@@ -87,9 +92,31 @@ export default function AddClassifiedAd(){
 
       return(
         <div className="addAd-container">
-            <Navbar
-                links={['Ads', 'Contact us']}
-            />
+            <Navbar links={['Ads', 'Contact us']}/>
+            
+            {/* Show loader while the ad is being uploaded to the database */}
+            {isLoading && (
+                <div className="loader-overlay">
+                <Oval
+                    height={100}
+                    width={100}
+                    radius={9}
+                    color="rgb(218, 37, 218)"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{
+                        position: "fixed",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: 9999,
+                        backgroundColor: "rgb(232, 230, 230)", // Change the
+                        borderRadius: "15px"
+                      }}
+                    wrapperClassName="loader"
+                />
+                </div>
+            )}
+
             <div className="form-container">
                 <form action="/advertisements" method="POST" onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-title">
