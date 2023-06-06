@@ -7,6 +7,7 @@ export default function SignUp(){
         email:"",
         username:"",
         password:"",
+        location: "",
     })
 
     const navigate = useNavigate()
@@ -42,6 +43,7 @@ export default function SignUp(){
             email: user.email,
             username: user.username,
             password: user.password,
+            location: user.location,
             })
         });
         const data = await response
@@ -70,6 +72,10 @@ export default function SignUp(){
                             <i className="fa-solid fa-lock"></i>
                             <input type="password" name="password" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&]).{8,}$" onChange={handleChange} required></input>
                             <p className="validation-msg">The password must contain at least one uppercase letter, one lowercase letter, one digit, one special character from the set @$!%*?& and be at least 8 characters long.</p>
+                        </div>
+                        <div className="input-field">
+                            <i className="fa-solid fa-town"></i>
+                            <input type="text" name="location" placeholder="Where are you from" onChange={handleChange} ></input>
                         </div>
                     </div>
                     <button>Sign up</button>
