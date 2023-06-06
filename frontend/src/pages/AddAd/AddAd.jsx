@@ -122,7 +122,7 @@ export default function AddClassifiedAd(){
                     />
                 </div>
                 <div className="form-image">
-                    <button className="imgbtn">
+                    <button className={`imgbtn ${adData.images.length > 0 ? 'button-with-images' : ''}`}>
                     <i class="fa-solid fa-camera"></i>
                     </button>
                     <input
@@ -132,6 +132,10 @@ export default function AddClassifiedAd(){
                     onChange={handleImage}
                     multiple
                     />
+                     {adData.images.length > 0 && (
+                        //Paragraph that shows the number of selected images
+                        <p>{`${adData.images.length} image${adData.images.length > 1 ? 's' : ''} selected`}</p>
+                    )}
                 </div>
                 <div className="form-category">
                     <label for="category">Category:</label>

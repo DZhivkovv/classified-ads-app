@@ -77,9 +77,11 @@
                 position: relative;
                 display: inline-block;
                 overflow: hidden;
-        
+                // background-color: yellow;
+                width: 120px;
+                
                 .imgbtn{
-                    width: 100px;
+                    width: 120px;
                     height: 70px;
                     margin-top: 20px;
                     border: none;
@@ -88,10 +90,24 @@
                     font-weight: bold;
                     color: gray;
                     background-color:rgb(232, 230, 230) ;
-        
+                    transition: background-color 0.3s, color 0.3s;
+
                     &:hover{
                         background-color: black;
                     }
+                }
+                
+                //Styling for the button if the user has selected images for his advertisement
+                .button-with-images{
+                    background-color: rgba(25, 170, 25, 0.942) !important;
+                    color: white !important;
+                    transition: background-color 0.3s, color 0.3s !important;
+                }
+
+                //Paragraph that shows the number of selected images
+                p{
+                    font-size: 11px;
+                    text-align: center;
                 }
             }
             span{
@@ -120,3 +136,4 @@
         }
     }
 }
+
