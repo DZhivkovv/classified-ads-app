@@ -130,7 +130,7 @@ export const getUserData = async ( request, response, next) => {
         username: user.username,
         email: user.email,
         location: user.location,
-        memberSince: user.createdAt,
+        memberSince: user.memberSince,
         userAds: userAds,
         adCount: adCount,
         });

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar.jsx'
 import Ad from '../../components/Ad/Ad.jsx'
 import './UserProfile.scss'
+import { Oval } from  'react-loader-spinner'
 import noProfilePic from '../../assets/AdPage/noProfilePic.png'
 
 export default function UserProfile() {
@@ -17,7 +18,25 @@ export default function UserProfile() {
   }, [id]);
 
   if(!user){
-    return <div>Loading...</div>
+    return <div className="loader-overlay">
+    <Oval
+        height={100}
+        width={100}
+        radius={9}
+        color="rgb(218, 37, 218)"
+        ariaLabel="oval-loading"
+        wrapperStyle={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 9999,
+            borderRadius: "15px"
+          }}
+        wrapperClassName="loader"
+    />
+    </div>
+
 }
 
   return (
