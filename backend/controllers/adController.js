@@ -5,7 +5,7 @@ dotenv.config();
 
 
 export const saveAdvertisement = async (request, response, next) => {
-  const { title, description, price, category, userID, username, isFreeShipping, isNew } = request.body;
+  const { title, description, price, category, userID, username, isFreeShipping, itemIsNew } = request.body;
   const images = request.files;
 
   try {
@@ -25,7 +25,7 @@ export const saveAdvertisement = async (request, response, next) => {
       username,
       images: imageUrls,
       isFreeShipping,
-      isNew,
+      itemIsNew,
     });
 
     await ad.save();
