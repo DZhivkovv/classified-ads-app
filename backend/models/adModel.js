@@ -59,7 +59,7 @@ const AdSchema = new mongoose.Schema({
 
   itemIsNew:{
     type: Boolean,
-    default: true,
+    default: false,
   }
 });
 

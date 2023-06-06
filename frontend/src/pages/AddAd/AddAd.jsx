@@ -13,13 +13,13 @@ export default function AddClassifiedAd(){
         category: 'Real Estate', //Default category value (it no category is selected it will be Real Estate)
         images:[],
         isFreeShipping: false,
-        itemIsNew: true
+        itemIsNew: false
       });
 
     const navigate = useNavigate();
       const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-      
+    
         if (type === "checkbox") {
           setAdData((prevAdData) => ({
             ...prevAdData,
@@ -59,8 +59,8 @@ export default function AddClassifiedAd(){
             formData.append('images', adData.images[i]);
           }
         formData.append('isFreeShipping',adData.isFreeShipping);
-        formData.append('itemIsNew',Boolean(adData.itemIsNew));
-        
+        formData.append('itemIsNew',adData.itemIsNew);
+
         fetch('http://localhost:3001/advertisements', {
           method: 'POST',
           body:formData
@@ -163,7 +163,6 @@ export default function AddClassifiedAd(){
                         <input
                             type="checkbox"
                             name="itemIsNew"
-                            checked={adData.itemIsNew}
                             onChange={handleChange}
                         />
                         Is the item you are selling new?
