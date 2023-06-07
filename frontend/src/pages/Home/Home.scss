@@ -6,6 +6,10 @@
         height: 90%;
         text-align: center;
 
+        h1{
+            font-size: 35px;
+        }
+
         .hero--grid{
             display: grid;
             grid-template-columns: repeat(5, 1fr);
