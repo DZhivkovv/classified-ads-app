@@ -6,10 +6,25 @@ import './Ads.scss'
 
 export default function Ads() {
     const [ads, setAds] = useState(null); // Stores all ads in the database
+    
+    //Message for successfully uploading an advertisement
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const uploadStatus = searchParams.get('upload');
+    const [showUploadMessage, setShowUploadMessage] = useState(false);
 
+    useEffect(() => {
+        if (uploadStatus === 'success') {
+          setShowUploadMessage(true); // Show the upload message
+          const timeout = setTimeout(() => {
+            setShowUploadMessage(false); // Hide the upload message after 5 seconds
+          }, 5000);
+      
+          return () => clearTimeout(timeout);
+        }
+      }, [uploadStatus]);
+
+      
     //States and variables for searching and filtering ads
     const [searchedAds, setSearchedAds] = useState(""); // Stores the ads the user is specifically searching for (filtered ads)
     const [searchQuery, setSearchQuery] = useState(""); // Stores the search query
@@ -154,7 +169,11 @@ export default function Ads() {
                 </div>
 
         <div className="all-ads">
-            {uploadStatus === 'success' && <div className="message-container"><p className="ad-success-message">Upload successful!</p></div>}
+            {showUploadMessage && (
+                <div className="message-container">
+                    <p className="ad-success-message">Upload successful!</p>
+                </div>
+            )}
             {/* Render ads if there are no searched ads and no search query or selected category */}
             {searchedAds && searchedAds.length === 0 && searchQuery.length === 0 && selectedCategory.length === 0 && (
                 ads ? (
