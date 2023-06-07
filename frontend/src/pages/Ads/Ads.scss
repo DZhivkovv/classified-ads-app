@@ -18,6 +18,14 @@
             align-items: flex-end;
         }
 
+        .message-container{
+            width: 70%;
+            text-align: center;
+        }
+        .ad-success-message{
+            color: green;
+            font-weight: bold;
+        }
         .add-an-ad-btn{
             position:fixed;
             bottom: 30px;

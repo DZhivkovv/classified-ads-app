@@ -71,7 +71,7 @@ export default function AddClassifiedAd(){
           body:formData
         })    
         .then(response => response.json())
-        .then(data => data.status === 200 ? navigate('/ads') : null);
+        .then(data => data.status === 200 ? navigate('/ads?upload=success') : null);
     }
 
     useEffect(()=>{

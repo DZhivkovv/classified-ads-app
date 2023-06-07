@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Ad from "../../components/Ad/Ad.jsx";
 import './Ads.scss'
 
 export default function Ads() {
     const [ads, setAds] = useState(null); // Stores all ads in the database
-
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const uploadStatus = searchParams.get('upload');
 
     //States and variables for searching and filtering ads
     const [searchedAds, setSearchedAds] = useState(""); // Stores the ads the user is specifically searching for (filtered ads)
@@ -152,6 +154,7 @@ export default function Ads() {
                 </div>
 
         <div className="all-ads">
+            {uploadStatus === 'success' && <div className="message-container"><p className="ad-success-message">Upload successful!</p></div>}
             {/* Render ads if there are no searched ads and no search query or selected category */}
             {searchedAds && searchedAds.length === 0 && searchQuery.length === 0 && selectedCategory.length === 0 && (
                 ads ? (
