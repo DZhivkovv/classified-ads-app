@@ -9,6 +9,8 @@ export default function Login(){
         password:""
     })
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [wrongCredentials, setWrongCredentials] = useState(false)
+    
     const navigate  = useNavigate();
 
     useEffect(() => {
@@ -45,9 +47,12 @@ export default function Login(){
           })
           .then(response => response.json())
           .then(data => {
+            console.log(data.status)
             localStorage.setItem('token', data.token)
             if(data.status === 200){
                 navigate('/')
+            } else if (data.status === 400){
+                setWrongCredentials(true)
             }
         })
     }
@@ -57,6 +62,7 @@ export default function Login(){
         <div className="login--container">
             <div className="form-box">
                 <h1>Sign in</h1>
+                {wrongCredentials && <div><p className="wrongCredentials-message">Wrong email or password!</p></div>}
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <div className="input-field">

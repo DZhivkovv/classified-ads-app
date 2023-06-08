@@ -103,3 +103,34 @@
         }
     }
 }
+
+@media (max-width:800px){
+    .profile-lower{
+        flex-flow: column;
+        
+        .profile-info{
+            flex-flow: row !important;
+
+            h3{
+                display: none;
+            }
+
+            .info{
+                height: 100px;
+                margin: 10px 10px;
+                display: flex;
+                align-items: center;
+            }
+
+        }
+
+        .profile-ads{
+            .ads-container{
+                display: flex !important;
+                flex-flow: column !important;
+                height: 100%;
+                align-items: center;
+            }
+        }
+    }
+}

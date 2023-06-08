@@ -3,8 +3,21 @@
     height: 100%;
 
     .home--hero-section{
-        height: 90%;
+        height: 85%;
+        width: 100% !important;
         text-align: center;
+        background-color: white ;
+
+        h1{
+            font-size: 35px;
+            font-weight: 500;
+        }
+
+        h3{
+            margin-top: 20px;
+            font-size: 25px;
+            font-weight: 500;
+        }
 
         .hero--grid{
             display: grid;
@@ -12,7 +25,8 @@
             grid-template-rows: repeat(10, 1fr);
             gap: 10px;
             height: 90%;
-    
+            width: 100%;
+
             .grid-section{
                 border-radius: 10px;
                 transition: .5s;
@@ -54,8 +68,7 @@
                 grid-column: 4;
                 grid-row: 2/5;
                 width: 75%;
-            }
- 
+            }  
             .tile6{
                 grid-column: 4;
                 grid-row: 7/10;
@@ -67,8 +80,40 @@
                 grid-row: 2/9;
                 width: 50%;
                 margin: 0 auto;
-
             }
+        }
+    }
+}
+
+@media (max-width: 650px) {
+
+    .home--hero-section{
+        height: 80% !important;
+
+        h1{
+            position: absolute;
+        }
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .home--hero-section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h1{
+            position: absolute;
+        }    
+    
+        h3{
+            display: none;
+        }    
+
+        .hero--grid{
+            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-rows: repeat(2, 1fr) !important;    
         }
     }
 }
