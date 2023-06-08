@@ -8,6 +8,7 @@ import ballImg from '../../assets/Home/soccer_ball.png'
 import dogImg from '../../assets/Home/dog.png'
 import houseImg from '../../assets/Home/house.png'
 import toolsImg from '../../assets/Home/tools.png'
+import Footer from "../../components/Footer/Footer";
 import './Home.scss'
 
 export default function Home(){
@@ -52,6 +53,7 @@ export default function Home(){
                     />
                 </div>
            </div>
+            <Footer/>
         </div>
     )
 }
