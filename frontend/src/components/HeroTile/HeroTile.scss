@@ -14,3 +14,74 @@
         transform: scale(1.05);
     }
 }
+
+@media (max-width: 1000px) {
+    .tile--container[style]{
+        background-color: transparent !important; //Overrides the inline style in HeroTile component
+    
+        img{
+            width: 200px;
+        }
+    }
+
+    .tile1{
+        grid-row: 1 !important;
+
+        img{
+            transform: rotate(-3deg);
+        }
+    }
+
+    .tile2{
+        grid-row: -3 !important;
+        grid-column: -1 !important;
+        img{
+            transform: rotate(10deg);
+        }
+    }
+
+    .tile3, .tile4, .tile5, .tile6, .tile7{
+        display: none;
+    }    
+
+}
+
+@media (max-width: 650px) {
+    .tile2{
+        img{
+            padding-right: 80px;
+        }
+    }
+
+}
+
+@media (min-width: 650px) and (max-width: 1000px){
+
+    .tile3{
+        display: block;
+        grid-row: -3 !important;
+        grid-column: 1 !important;
+        
+    }
+
+}
+
+@media (min-width: 800px) and (max-width: 1000px){
+
+    .tile2{
+        grid-row: -3 !important;
+
+    }
+
+    .tile7{
+        display: block !important;
+        grid-row: 1 !important;
+        grid-column: -1 !important;
+
+        img{
+            width: 100px !important;
+            transform: rotate(15deg);
+        }
+    }
+}
+

@@ -59,8 +59,7 @@
                 grid-column: 4;
                 grid-row: 2/5;
                 width: 75%;
-            }
- 
+            }  
             .tile6{
                 grid-column: 4;
                 grid-row: 7/10;
@@ -76,4 +75,41 @@
             }
         }
     }
+}
+
+@media (max-width: 650px) {
+
+    .home--hero-section{
+        height: 80% !important;
+    }
+
+
+    h1{
+        position: absolute;
+    }
+    // .hero--grid {
+    //   display: none !important;
+    // }
+
+    
+}
+
+
+@media (max-width: 1000px) {
+
+    .home--hero-section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    h1{
+        position: absolute;
+    }
+    // .hero--grid {
+    //   display: none !important;
+    // }
+
+    
 }
