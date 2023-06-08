@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar/Navbar.jsx'
 import { EmblaCarousel } from '../../components/Carousel/Carousel.jsx'
 import { Oval } from  'react-loader-spinner'
 import './Ad.scss'
+import noImages from '../../assets/no-image.png'
 import noProfilePic from '../../assets/AdPage/noProfilePic.png'
 
 export default function Ad(props){
@@ -44,9 +45,16 @@ export default function Ad(props){
             <div className='ad'>
                 <div className='ad-upper'>
                     <div className='ad-image-container'>
-                        <EmblaCarousel 
-                        images={ad.images}
-                        />
+                        {ad.images.length === 0 ? 
+                            <div className='no-images'>
+                            <img src={noImages} alt='Not provided'/>
+                            <p>The user has not provided any images</p>
+                            </div>
+                            :
+                            <EmblaCarousel 
+                            images={ad.images}
+                            />    
+                        }
                     </div>
 
                     <div className='ad-data-container'>
