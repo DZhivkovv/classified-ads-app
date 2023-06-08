@@ -21,6 +21,7 @@ export default function Home(){
 
             <div className="home--hero-section">
                 <h1>What are you looking for?</h1>
+                <h3>We have it.</h3>
 
                 <div className="hero--grid">
                     <HeroTile

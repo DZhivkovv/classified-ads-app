@@ -1,3 +1,4 @@
+
 .tile--container{
     border-radius: 10px;
     transition: .5s;
@@ -26,15 +27,15 @@
 
     .tile1{
         grid-row: 1 !important;
-
+        grid-column: 1 !important;
         img{
             transform: rotate(-3deg);
         }
     }
 
     .tile2{
-        grid-row: -3 !important;
-        grid-column: -1 !important;
+        grid-row: 2 !important;
+        grid-column: 2 !important;
         img{
             transform: rotate(10deg);
         }
@@ -46,42 +47,35 @@
 
 }
 
-@media (max-width: 650px) {
-    .tile2{
-        img{
-            padding-right: 80px;
-        }
-    }
 
+@media (max-width: 450px){
+
+    img{
+        width: 150px !important;
+    }
 }
 
 @media (min-width: 650px) and (max-width: 1000px){
 
     .tile3{
         display: block;
-        grid-row: -3 !important;
-        grid-column: 1 !important;
-        
-    }
+        grid-row: 1 !important;
+        grid-column: 2 !important;
 
-}
-
-@media (min-width: 800px) and (max-width: 1000px){
-
-    .tile2{
-        grid-row: -3 !important;
-
+        img{
+            max-width: 150px;
+        }
     }
 
     .tile7{
         display: block !important;
-        grid-row: 1 !important;
-        grid-column: -1 !important;
+        grid-row: 2 !important;
+        grid-column: 1 !important;
 
+        margin-top: 100px !important;        
         img{
             width: 100px !important;
             transform: rotate(15deg);
         }
     }
 }
-
