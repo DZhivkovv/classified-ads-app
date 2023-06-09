@@ -19,7 +19,7 @@ export default function Navbar(props){
     const navigate = useNavigate();
     
     useEffect(() => {
-        fetch('http://localhost:3001/api/isUserAuth',{
+        fetch('https://classified-ads-app.onrender.com/api/isUserAuth',{
             headers: {
                 'x-access-token':localStorage.getItem('token')
             }

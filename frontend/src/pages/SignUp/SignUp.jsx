@@ -14,7 +14,7 @@ export default function SignUp(){
 
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/isUserAuth',{
+        fetch('https://classified-ads-app.onrender.com/api/isUserAuth',{
             headers: {
                 'x-access-token':localStorage.getItem('token')
             }
@@ -36,7 +36,7 @@ export default function SignUp(){
     const handleSubmit = async (event) => {
         event.preventDefault();
     
-        const response = await fetch('http://localhost:3001/api/register', {
+        const response = await fetch('https://classified-ads-app.onrender.com/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

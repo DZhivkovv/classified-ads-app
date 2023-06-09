@@ -89,7 +89,7 @@ export default function Ads() {
     };
     // Fetches all ads when the component mounts
     useEffect(() => {
-        fetch(`http://localhost:3001/getAllAds?page=${pageNumber}`)
+        fetch(`https://classified-ads-app.onrender.com/getAllAds?page=${pageNumber}`)
             .then(response => response.json())
             .then(data => {
                 setAds(data.ads);
@@ -101,7 +101,7 @@ export default function Ads() {
 
     // Fetches searched ads according to search query, category or both (when the search query, category filter or filteredPageNumber changes)
     useEffect(() => {
-        let url = `http://localhost:3001/searchAds?search=${encodeURIComponent(searchQuery)}`;
+        let url = `https://classified-ads-app.onrender.com/searchAds?search=${encodeURIComponent(searchQuery)}`;
         if (category) {
           url += `&category=${encodeURIComponent(category)}`;
         };

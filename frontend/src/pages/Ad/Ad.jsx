@@ -13,7 +13,7 @@ export default function Ad(props){
 
     //Fetches data about the advertisement from the database using the ad's ID
     useEffect(()=>{
-        fetch(`http://localhost:3001/ads/${id}`)
+        fetch(`https://classified-ads-app.onrender.com/ads/${id}`)
         .then(res => res.json())
         .then(data => setAd(data))
         .catch(err => console.error(err))

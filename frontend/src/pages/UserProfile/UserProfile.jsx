@@ -12,7 +12,7 @@ export default function UserProfile() {
 
   
   useEffect(()=>{
-    fetch(`http://localhost:3001/api/users/${id}`)
+    fetch(`https://classified-ads-app.onrender.com/api/users/${id}`)
     .then(res => res.json())
     .then(data => setUser(data));
   }, [id]);

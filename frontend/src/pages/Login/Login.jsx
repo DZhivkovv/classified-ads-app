@@ -17,7 +17,7 @@ export default function Login(){
 
     useEffect(() => {
         //Check if the user is already authenticated.
-        fetch('http://localhost:3001/api/isUserAuth',{
+        fetch('https://classified-ads-app.onrender.com/api/isUserAuth',{
             headers: {
                 'x-access-token':localStorage.getItem('token')
             }
@@ -43,7 +43,7 @@ export default function Login(){
         setIsLoading(true);
 
         //Send login request to the server
-        await fetch('http://localhost:3001/api/login', {
+        await fetch('https://classified-ads-app.onrender.com/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

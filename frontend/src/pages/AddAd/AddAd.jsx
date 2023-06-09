@@ -66,7 +66,7 @@ export default function AddClassifiedAd(){
         formData.append('isFreeShipping',adData.isFreeShipping);
         formData.append('itemIsNew',adData.itemIsNew);
 
-        fetch('http://localhost:3001/advertisements', {
+        fetch('https://classified-ads-app.onrender.com/advertisements', {
           method: 'POST',
           body:formData
         })    
@@ -75,7 +75,7 @@ export default function AddClassifiedAd(){
     }
 
     useEffect(()=>{
-        fetch('http://localhost:3001/api/isUserAuth',{
+        fetch('https://classified-ads-app.onrender.com/api/isUserAuth',{
             headers: {
                 'x-access-token':localStorage.getItem('token')
             }
