@@ -76,7 +76,7 @@ export default function Ad(props){
                     <p>Posted by: <Link to={`/users/${ad.userID}`}>{ad.username}</Link></p>
                     <img src={noProfilePic} className='default-profile' alt='No profile img'/>
 
-                    <button>Text the seller</button>
+                    <Link className='message-user-btn' to={`/message/${ad.userID}`}>Text the seller</Link>
                     </div>
                 </div>
             </div>
