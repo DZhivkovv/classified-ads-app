@@ -1,0 +1,23 @@
+.underConstruction-container{
+    height: 100%;
+    .underConstruction-content{
+        background-color: white;
+        height: 85%;
+        display: flex;
+        font-size: 25px;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+        text-align: center;
+
+        img{
+            width: 400px;
+        }
+    }
+}
+
+@media (max-width:550px) {
+    img{
+        width: 250px !important;
+    }
+}
