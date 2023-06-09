@@ -6,6 +6,7 @@ import AddClassifiedAd from './pages/AddAd/AddAd';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import UserProfile from './pages/UserProfile/UserProfile'
+import NotFound from './pages/NotFoundPage/NotFound';
 import UnderConstruction from './pages/UnderConstructionPage/UnderConstruction';
 import {Routes, Route, BrowserRouter} from 'react-router-dom'
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/message/:id" element={<UnderConstruction/>} />
           <Route path='/login' element={<Login/>}/>
           <Route path="/users/:id" element={<UserProfile/>} />
+          <Route path="*" element={<NotFound/>} /> 
         </Routes>
       </BrowserRouter>
     </div>
