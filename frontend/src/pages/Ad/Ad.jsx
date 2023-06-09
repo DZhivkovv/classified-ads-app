@@ -11,6 +11,7 @@ export default function Ad(props){
     const [ad, setAd] = useState(null);
     const { id } = useParams();
 
+    //Fetches data about the advertisement from the database using the ad's ID
     useEffect(()=>{
         fetch(`http://localhost:3001/ads/${id}`)
         .then(res => res.json())
@@ -18,6 +19,7 @@ export default function Ad(props){
         .catch(err => console.error(err))
     }, [id])
 
+    /*A loader will be displayed while the advertisement loads */
     if(!ad){
         return <Oval
         height={100}
@@ -45,6 +47,7 @@ export default function Ad(props){
             <div className='ad'>
                 <div className='ad-upper'>
                     <div className='ad-image-container'>
+                        {/*If the user has not provided any photos for the item they are selling, a placeholder image will be displayed*/}
                         {ad.images.length === 0 ? 
                             <div className='no-images'>
                             <img src={noImages} alt='Not provided'/>
@@ -57,6 +60,7 @@ export default function Ad(props){
                         }
                     </div>
 
+                    {/*Information about the product such as description and price  */}
                     <div className='ad-data-container'>
                         <h2 className='data-title'>{ad.title}</h2>
                         <p className='data-description'>{ad.description}</p>
@@ -65,6 +69,8 @@ export default function Ad(props){
                         </div>
                     </div>
                 </div>
+
+                {/*Information about the user selling the product*/}
                 <div className='ad-lower'>
                     <div className='ad-user-container'>
                     <p>Posted by: <Link to={`/users/${ad.userID}`}>{ad.username}</Link></p>
