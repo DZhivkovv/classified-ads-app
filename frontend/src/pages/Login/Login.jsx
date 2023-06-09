@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Link, useNavigate } from 'react-router-dom';
+import { Oval } from  'react-loader-spinner'
 import './Login.scss';
 
 // Component to handle user login
@@ -9,17 +10,20 @@ export default function Login(){
         password:""
     })
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [wrongCredentials, setWrongCredentials] = useState(false)
-    
+    const [wrongCredentials, setWrongCredentials] = useState(false) // When true, a message will be displayed telling the user his credentials are wrong.
+    const [isLoading, setIsLoading] = useState(false); //When true, a loader will display.
+
     const navigate  = useNavigate();
 
     useEffect(() => {
+        //Check if the user is already authenticated.
         fetch('http://localhost:3001/api/isUserAuth',{
             headers: {
                 'x-access-token':localStorage.getItem('token')
             }
         })
         .then(response => response.json())
+        //If the user is already authenticated, he will be redirected to the homepage. 
         .then(data => data.isLoggedIn === true ? navigate('/'): null)
     },[])
 
@@ -36,7 +40,9 @@ export default function Login(){
     // Handle form submission
     async function handleSubmit(e){
         e.preventDefault();
+        setIsLoading(true);
 
+        //Send login request to the server
         await fetch('http://localhost:3001/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -47,12 +53,14 @@ export default function Login(){
           })
           .then(response => response.json())
           .then(data => {
-            console.log(data.status)
             localStorage.setItem('token', data.token)
             if(data.status === 200){
+                //If the login is successful, the user will be redirected to the homepage.
                 navigate('/')
+                setIsLoading(false);
             } else if (data.status === 400){
                 setWrongCredentials(true)
+                setIsLoading(false);
             }
         })
     }
@@ -62,7 +70,10 @@ export default function Login(){
         <div className="login--container">
             <div className="form-box">
                 <h1>Sign in</h1>
+
+                {/* Displays a message telling the user the credentials they provided are wrong. */}               
                 {wrongCredentials && <div><p className="wrongCredentials-message">Wrong email or password!</p></div>}
+                
                 {/* Displays a loading spinner while waiting for a response from the server during the login process. */}
                 {isLoading === true &&     
                 <Oval
