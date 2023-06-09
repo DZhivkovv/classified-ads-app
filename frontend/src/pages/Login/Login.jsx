@@ -63,6 +63,26 @@ export default function Login(){
             <div className="form-box">
                 <h1>Sign in</h1>
                 {wrongCredentials && <div><p className="wrongCredentials-message">Wrong email or password!</p></div>}
+                {/* Displays a loading spinner while waiting for a response from the server during the login process. */}
+                {isLoading === true &&     
+                <Oval
+                    height={100}
+                    width={100}
+                    radius={9}
+                    color="rgb(218, 37, 218)"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{
+                        position: "fixed",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: 9999,
+                        borderRadius: "15px"
+                    }}
+                    wrapperClassName="loader"
+                />
+                }
+
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <div className="input-field">
