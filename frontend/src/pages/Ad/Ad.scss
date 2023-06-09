@@ -78,7 +78,9 @@
                     width: 50px;
                 }
 
-                button{
+                .message-user-btn{
+                    text-align: center;
+                    text-decoration: none;
                     width: 150px;
                     padding: 10px;
                     margin: 0 10px;
@@ -146,7 +148,14 @@
                     display: flex !important;
                     justify-content: center !important;
                     margin: 0px !important;
-        
+
+                    .message-user-btn{
+                        font-size: 12px;
+                    }
+
+                    p{
+                        padding-left: 15px;
+                    }
                     img{
                         width: 100px !important;
                         margin: 0px 30px !important;
