@@ -21,7 +21,7 @@
         background-color: transparent !important; //Overrides the inline style in HeroTile component
     
         img{
-            width: 200px;
+            width: 150px !important;
         }
     }
 
@@ -48,12 +48,6 @@
 }
 
 
-@media (max-width: 450px){
-
-    img{
-        width: 150px !important;
-    }
-}
 
 @media (min-width: 650px) and (max-width: 1000px){
 
@@ -62,9 +56,6 @@
         grid-row: 1 !important;
         grid-column: 2 !important;
 
-        img{
-            max-width: 150px;
-        }
     }
 
     .tile7{
@@ -74,7 +65,6 @@
 
         margin-top: 100px !important;        
         img{
-            width: 100px !important;
             transform: rotate(15deg);
         }
     }
