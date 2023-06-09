@@ -10,7 +10,13 @@ import adRouter from './routes/adRoutes.js';
 const app = express();
 app.use(express.json())
 app.use(bodyParser.json());
-app.use(cors());
+const corsOptions = {
+    origin: 'https://classified-ads-website.onrender.com',
+    credentials: true,
+    methods: ['OPTIONS', 'GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Depth', 'User-Agent', 'X-File-Size', 'X-Requested-With', 'If-Modified-Since', 'X-File-Name', 'Cache-Control', 'x-access-token'],
+}
+app.use(cors(corsOptions));
 app.use('/api', router)
 app.use('/', adRouter)
 
