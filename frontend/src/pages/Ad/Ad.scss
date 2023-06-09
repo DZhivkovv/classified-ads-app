@@ -134,11 +134,11 @@
         
                 .ad-data-container{
                     margin-top: 5px;
+                    font-size: 12px;
                 }
             }
             .ad-lower{ 
                 position: absolute;
-                bottom: -20px;
                 display: flex;
                 flex-flow: column !important;
                 width: 100% !important;
@@ -167,7 +167,7 @@
 }
 
 
-@media (max-width: 1000px) and (max-height: 850px) {
+@media (max-width: 1000px) {
     .ad-container{
         .ad{
             height: 100%;
@@ -178,9 +178,10 @@
                 top: 10px;
             }
             .ad-lower{
-                position: absolute;
-                bottom: 0;
+                position: absolute !important;
+                bottom: 0 !important;
             }        
         }        
     }
 }
+

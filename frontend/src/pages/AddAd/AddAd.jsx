@@ -122,7 +122,8 @@ export default function AddClassifiedAd(){
                 <div className="form-title">
                     <label for="title">Title: <span>*</span></label>
                     <input 
-                        type="text" 
+                        type="text"
+                        placeholder="Maximum 100 symbols"
                         id="title" 
                         name="title" 
                         onChange={handleChange} 
@@ -133,6 +134,7 @@ export default function AddClassifiedAd(){
                     <label for="description">Description: <span>*</span></label>
                     <textarea 
                     id="description" 
+                    placeholder="Maximum 500 symbols"
                     name="description" 
                     onChange={handleChange} 
                     required
