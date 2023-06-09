@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './Navbar.scss'
-import logo from '../../assets/—Pngtree—corporate image logo free logo_1026060.png'
+import logo from '../../assets/logo.png'
 
 export default function Navbar(props){
     const [user, setUser] = useState(null)
@@ -41,7 +41,7 @@ export default function Navbar(props){
             <ul className="nav--container">
                 <div className="nav--left">
                     <Link to='/'>                
-                        <img src={logo} alt="A temporary logo until i make one" className="nav--element logo"/>
+                        <img src={logo} alt="Logo for the website" className="nav--element logo"/>
                     </Link>
                     {allLinks}
                 </div>

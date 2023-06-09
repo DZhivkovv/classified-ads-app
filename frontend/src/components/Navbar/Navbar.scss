@@ -20,7 +20,8 @@ nav{
             }
 
             .logo{
-                width: 65px;
+                width: 70px;
+                margin-top: 15px;
                 margin-right: 20px;
             }
         }
@@ -81,6 +82,8 @@ nav{
 @media (max-width: 768px) {
     .nav--container {
       margin: 0 20px !important;
+      font-size: 12px;
+
     }
 
     .contactus{
@@ -90,11 +93,11 @@ nav{
     .nav--left {
       a {
         margin: 0 5px !important;
-      }
+    }
   
       .logo {
-        width: 40px !important;
-        margin-right: 10px !important;
+        width:70px !important;
+        margin-right: 0px !important;
       }
     }
   
